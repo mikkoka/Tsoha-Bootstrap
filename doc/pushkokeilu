@@ -1,0 +1,3 @@
+Tein pienen muutoksen tiedostoon .git/config, ja kokeilen nyt onnistuuko push kotikoneelta (ei onnistunut laitoksen koneelta).
+
+http://stackoverflow.com/questions/7438313/pushing-to-git-returning-error-code-403-fatal-http-request-failed
