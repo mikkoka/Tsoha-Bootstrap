@@ -1,1 +1,8 @@
 -- Lisää DROP TABLE lauseet tähän tiedostoon
+
+DROP TABLE IF EXISTS Ohjaaja CASCADE; -- Muista IF EXISTS ja CASCADE parametrit!
+DROP TABLE IF EXISTS Aihe CASCADE;
+DROP TABLE IF EXISTS Tapahtumatyyppi CASCADE;
+DROP TABLE IF EXISTS Edistymistapahtuma CASCADE;
+DROP TABLE IF EXISTS Tutkimusala CASCADE;
+DROP TABLE IF EXISTS Aiheen_luokitus CASCADE;

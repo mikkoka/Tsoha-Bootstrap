@@ -1,3 +1,11 @@
 \select@language {finnish}
 \contentsline {section}{\numberline {1}Johdanto}{1}
-\contentsline {section}{\numberline {2}K\IeC {\"a}ytt\IeC {\"o}tapaukset}{2}
+\contentsline {section}{\numberline {2}J\IeC {\"a}rjestelm\IeC {\"a}n k\IeC {\"a}ytt\IeC {\"a}j\IeC {\"a}t}{1}
+\contentsline {subsection}{\numberline {2.1}K\IeC {\"a}ytt\IeC {\"o}tapauskaavio}{1}
+\contentsline {subsection}{\numberline {2.2}K\IeC {\"a}ytt\IeC {\"a}j\IeC {\"a}ryhm\IeC {\"a}t}{2}
+\contentsline {subsubsection}{\numberline {2.2.1}Opiskelijan k\IeC {\"a}ytt\IeC {\"o}tapaukset}{2}
+\contentsline {subsubsection}{\numberline {2.2.2}Ohjaajan k\IeC {\"a}ytt\IeC {\"o}tapaukset}{2}
+\contentsline {section}{\numberline {3}J\IeC {\"a}rjestelm\IeC {\"a}n tietosis\IeC {\"a}lt\IeC {\"o}}{3}
+\contentsline {subsection}{\numberline {3.1}K\IeC {\"a}sitemalli}{3}
+\contentsline {subsection}{\numberline {3.2}Tietokohteiden kuvaukset}{3}
+\contentsline {section}{\numberline {4}Relaatiotietokantakaavio}{5}
