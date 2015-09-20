@@ -1,9 +1,40 @@
 {% extends "base.html" %}
 {% block content %}
+<h1><strong>Tehokas tekstihaku suuressa relaatiotietokannassa</strong></h1>
+<h4>Olli Opiskelija</h4>
+<button type="submit" class="btn btn-primary">Muokkaa otsikkoa, kuvausta tai tekijän tietoja</button>
+<div class="form-group">
+    <h3>Ohjaajat</h3>
+    <ul>
+        <li>Olli Ohjausmestari <a class="label label-danger">Poista</a></li>
+        <li>Kalle Kakkonen <a class="label label-danger">Poista</a></li>
+    </ul>
+    <button type="submit" class="btn btn-primary">Lisää ohjaaja</button>
+</div>
 
-<h3>Muokkaa aihetta:</h3>
-<h1>"Tehokas tekstihaku suuressa relaatiotietokannassa"</h1>
 
+<h3>Tapahtumat:</h3>
+<div class="form-group">
+    <ul>
+        <li>Ohjauspalaveri (3.12.2011)  <a class="label label-primary" >Tarkastele</a></li>
+        <li>Ohjauspalaveri (1.2.2012)  <a class="label label-primary" >Tarkastele</a></li>
+        <li>Graduseminaari suoritettu (12.5.2012)  <a class="label label-primary" >Tarkastele</a></li>
+        <li>Ohjauspalaveri (1.6.2012)  <a class="label label-primary" >Tarkastele</a></li>
+        <li>Ohjauspalaveri (9.12.2014)    <a class="label label-primary" >Tarkastele</a></li>
+    </ul>
+    <button type="submit" class="btn btn-primary">Lisää tapahtuma</button>
+</div>
+
+<h3>Erityisalat:</h3>
+<div class="form-group">
+    <ul>
+        <li>Tietokantajärjestelmät <a class="label label-danger" >Poista</a></li>
+        <li>Hakualgoritmit <a class="label label-danger" >Poista</a></li>
+    </ul>
+    <button type="submit" class="btn btn-primary">Lisää erityisala</button>
+</div>
+
+<h2>Muokkaa Tietoja:</h2>
 <form>
     <div class="form-group">
         <label>Otsikko</label>
@@ -26,36 +57,12 @@
         <input type="text" class="form-control" value="Otto Opiskelija">
     </div>
     
-    <button type="submit" class="btn btn-default">Päivitä otsikko, kuvaus ja tekijä</button>
+    <button type="submit" class="btn btn-primary">Päivitä otsikko, kuvaus ja tekijä</button>
 </form>
+<p></p>
 
-<div class="form-group">
-    <h3>Ohjaajat</h3>
-    <ul>
-        <li>Olli Ohjausmestari <a class="label label-danger">Poista</a></li>
-        <li>Kalle Kakkonen <a class="label label-danger">Poista</a></li>
-    </ul>
-    <button type="submit" class="btn btn-default">Lisää ohjaaja</button>
-</div>
-<h3>Erityisalat:</h3>
-<div class="form-group">
-    <ul>
-        <li>Tietokantajärjestelmät <a class="label label-danger" >Poista</a></li>
-        <li>Hakualgoritmit <a class="label label-danger" >Poista</a></li>
-    </ul>
-    <button type="submit" class="btn btn-default">Lisää erityisala</button>
-</div>
 
-<h3>Tapahtumat:</h3>
-<div class="form-group">
-    <ul>
-        <li>Ohjauspalaveri (3.12.2011)  <a class="label label-success" >Tarkastele</a></li>
-        <li>Ohjauspalaveri (1.2.2012)  <a class="label label-success" >Tarkastele</a></li>
-        <li>Graduseminaari suoritettu (12.5.2012)  <a class="label label-success" >Tarkastele</a></li>
-        <li>Ohjauspalaveri (1.6.2012)  <a class="label label-success" >Tarkastele</a></li>
-        <li>Ohjauspalaveri (9.12.2014)    <a class="label label-success" >Tarkastele</a></li>
-    </ul>
-    <button type="submit" class="btn btn-default">Lisää tapahtuma</button>
-</div>
-<a class="btn btn-primary" href="http://mkahri.users.cs.helsinki.fi/tsoha/aiheet/aihe">Paluu</a>
+<a class="btn btn-primary" href="{{base_path}}/aiheet">Paluu</a>
+
+
 {% endblock %}

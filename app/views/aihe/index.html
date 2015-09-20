@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Hae aiheita</h1>
+<form method="post" action="{{base_path}}/aiheet">
+    <div class="form-group">
+        <label>Tutkimusala, johon graduaihe liittyy</label>
+        <input type="text" name="ala" class="form-control" value="Relaatiotietokantajärjestelmät">
+    </div>
+    <div class="form-group">
+        <label>Gradun ohjaajan sukunimi</label>
+        <input type="text" name="ohjaaja" class="form-control" value="Ohjausmestari">
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Hae</button>
+    </div>
+</form>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Otsikko</th>
+            <th>Aloituspäivä</th>
+
+            <th></th>
+
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for aihe in aiheet %}
+        <tr>
+            <td><a href="{{base_path}}/aihe/{{aihe.id}}">{{aihe.otsikko}}</a></td>
+            <td>{{aihe.luotu|date('d.m.Y')}}</td>
+
+            <td><a class="btn btn-primary" href="{{base_path}}/aihe/{{aihe.id}}/muokkaus">Muokkaa</a></td>
+        </tr>
+        
+        {% endfor %}
+        
+        
+    </tbody>
+</table>
+{% endblock %}
+
+

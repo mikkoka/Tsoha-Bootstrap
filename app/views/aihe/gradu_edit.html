@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<h4>{{aihe.tekija_nimi}}</h4>
+<h1><strong>{{aihe.otsikko}}</strong></h1>
+
+<h2>Muokkaa Tietoja:</h2>
+<form>
+    <div class="form-group">
+        <label>Otsikko</label>
+        <input type="text" class="form-control" value="{{aihe.otsikko}}">
+    </div>
+
+    <div class="form-group">
+        <label>Kuvaus</label>
+        <textarea class="form-control">{{aihe.kuvaus}}
+        </textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Tekijän opiskelijanumero</label>
+        <input type="number" class="form-control" value="001234567">
+    </div>
+    
+    <div class="form-group">
+        <label>Tekijän nimi</label>
+        <input type="text" class="form-control" value="Otto Opiskelija">
+    </div>
+    
+    <button type="submit" class="btn btn-primary">Tallenna</button>
+</form>
+<p></p>
+
+
+<a class="btn btn-primary" href="{{base_path}}/aiheet">Paluu</a>
+
+
+{% endblock %}

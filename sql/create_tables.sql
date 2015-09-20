@@ -43,3 +43,10 @@ CREATE TABLE Aiheen_luokitus(
     ala INTEGER REFERENCES Tutkimusala(id) NOT NULL,
     PRIMARY KEY(aihe, ala)
 );
+
+
+CREATE TABLE Aiheen_ohjaaja (
+    aihe INTEGER REFERENCES Aihe(id) NOT NULL,
+    ohjaaja INTEGER REFERENCES Ohjaaja(id) NOT NULL, 
+    PRIMARY KEY(aihe, ohjaaja)
+);

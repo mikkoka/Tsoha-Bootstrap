@@ -7,10 +7,13 @@ class HelloWorldController extends BaseController {
         echo 'Tämä ön etysivy!';
     }
 
-    public static function sandbox() {
-        // Testaa koodiasi täällä
-        View::make('helloworld.html');
-    }
+  public static function sandbox(){
+    $aihe = Aihe::find(1);
+    $aiheet = Aihe::all();
+    // Kint-luokan dump-metodi tulostaa muuttujan arvon
+    Kint::dump($aiheet);
+    Kint::dump($aihe);
+  }
 
     public static function aiheet() {
         View::make('suunnitelmat/aiheet.html');

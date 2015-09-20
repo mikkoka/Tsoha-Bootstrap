@@ -1,7 +1,7 @@
 <?php
 
   $routes->get('/', function() {
-    HelloWorldController::index();
+    HelloWorldController::etusivu();
   });
 
   $routes->get('/hiekkalaatikko', function() {
@@ -9,20 +9,42 @@
   });
   
   $routes->get('/aiheet', function() {
-    HelloWorldController::aiheet();
+    Aihekontrolleri::index();
   });
   
-  $routes->get('/aiheet/aihe', function() {
-    HelloWorldController::aihe();
-  });
-  
-  $routes->get('/aiheet/aihe/muokkaus', function() {
+  $routes->get('/aihe/muokkaus', function() {
     HelloWorldController::muokkaus();
   });
   
-  $routes->get('/aiheet/aihe/tapahtuma', function() {
+  $routes->get('/aihe/tapahtuma', function() {
     HelloWorldController::tapahtuma();
+  });  
+  
+
+  $routes->get('/aihe/:id', function($id) {
+    Aihekontrolleri::show($id);
   });
+  
+  $routes->get('/aihe/:id/muokkaus', function($id) {
+    Aihekontrolleri::edit($id);
+  });
+  
+  $routes->post('/aihe/:id/lisaa_ohjaaja', function($id) {
+    Aihekontrolleri::lisaa_ohjaaja($id);
+  });
+  
+  $routes->post('/aihe/:id/lisaa_tutkimusala', function($id) {
+    Aihekontrolleri::lisaa_tutkimusala($id);
+  }); 
+  
+  $routes->post('/aihe/:id/gradun_tiedot', function($id) {
+    Aihekontrolleri::edit_gradu($id);
+  }); 
+  
+  
+  
+
+
   
   $routes->get('/graduaiheet', function() {
     HelloWorldController::etusivu();

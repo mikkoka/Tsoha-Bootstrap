@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>{{aihe.otsikko}}</h1>
+  <ul>
+    <li><strong>Aloituspäivä:</strong> {{aihe.luotu|date('d.m.Y')}}</li>
+
+    <li><strong>Ohjaajat:</strong> 
+        {% for ohjaaja in ohjaajat %}
+        {{ ohjaaja.enimi }}
+        {{ ohjaaja.snimi }}
+        {% if not loop.last %},{% endif %}
+        {% endfor %}
+    </li>
+    <li><strong>Tutkimusalat:</strong>
+        {% for ala in alat %}
+        {{ ala.nimi}}
+        {% if not loop.last %},{% endif %}
+        {% endfor %}
+    </li>  
+    <li><strong>Status:</strong> {% if valmis.aika %}<label class="label label-success">Valmis</label>{% else %}<label class="label label-danger">Kesken</label>{% endif %}</li>
+    <li><strong>Edellinen tapahtuma:</strong> {% if tapahtuma.aika %}{{tapahtuma.aika|date('d.m.Y')}}{% else %}<label class="label label-danger">Ei tapahtumia</label>{% endif %}</li>
+    {% if valmis.aika %}
+    <li>
+        <strong>Tekijä: {{aihe.tekija_nimi}}</strong>
+    </li>
+    {% endif %}
+  </ul>
+  <p>
+    {{aihe.kuvaus}}
+  </p>
+  <a class="btn btn-primary" href="{{base_path}}/aiheet">Paluu</a>
+{% endblock %}
