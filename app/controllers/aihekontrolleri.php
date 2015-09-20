@@ -7,7 +7,26 @@ class Aihekontrolleri extends BaseController {
         View::make('aihe/index.html', array('aiheet'=>$aiheet));
     }
     
-        public static function show($id) {
+        public static function uusiAihe() {
+        
+        View::make('aihe/add.html');
+    }
+
+    public static function luoUusiAihe() {
+        $params = $_POST;
+        $aihe = new Aihe(array(
+            'otsikko' => $params['otsikko'],
+            'kuvaus' => $params['kuvaus'],
+            'tekija_nimi' => $params['tekija_nimi'],
+            'opnro' => $params['opnro']
+        ));
+
+        $aihe->tallenna();
+
+        Redirect::to('/aihe/' . $aihe->id . '/muokkaus');
+    }
+
+    public static function show($id) {
         $aihe = Aihe::find($id);
         $ohjaajat = Ohjaaja::findOhjaajat($id);
         $alat = Tutkimusala::gradunAlat($id);
@@ -27,6 +46,7 @@ class Aihekontrolleri extends BaseController {
         $ohjaajat = Ohjaaja::findOhjaajat($id);
         $alat = Tutkimusala::gradunAlat($id);
         $tapahtumat = Edistymistapahtuma::findAll($id);
+        $tapahtumatyyppi = Tapahtumatyyppi::all();
         $kaikki_ohjaajat = Ohjaaja::all();
         $kaikki_alat = Tutkimusala::all();
         
@@ -35,6 +55,7 @@ class Aihekontrolleri extends BaseController {
             'ohjaajat'=>$ohjaajat,
             'alat'=>$alat,
             'tapahtumat'=>$tapahtumat,
+            'tapahtumatyyppi'=>$tapahtumatyyppi,
             'kaikki_ohjaajat'=>$kaikki_ohjaajat,
             'kaikki_alat'=>$kaikki_alat));
     }  
@@ -47,6 +68,8 @@ class Aihekontrolleri extends BaseController {
             ));
     }
     
+
+    
     
     
     public static function lisaa_ohjaaja($id) {
@@ -58,7 +81,7 @@ class Aihekontrolleri extends BaseController {
         
         $uusi_ohjaaja->tallenna();
         
-        Redirect::to('/aihe/' . $id);
+        Redirect::to('/aihe/' . $id . '/muokkaus');
     }
     
         public static function lisaa_tutkimusala($id) {
@@ -70,7 +93,7 @@ class Aihekontrolleri extends BaseController {
         
         $uusi_ala->tallenna();
         
-        Redirect::to('/aihe/' . $id);
+        Redirect::to('/aihe/' . $id . '/muokkaus');
     }
             
 }

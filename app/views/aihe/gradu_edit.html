@@ -18,18 +18,17 @@
 
     <div class="form-group">
         <label>Tekijän opiskelijanumero</label>
-        <input type="number" class="form-control" value="001234567">
+        <input type="number" class="form-control" value="{{aihe.opnro}}">
     </div>
     
     <div class="form-group">
         <label>Tekijän nimi</label>
-        <input type="text" class="form-control" value="Otto Opiskelija">
+        <input type="text" class="form-control" value="{{aihe.tekija_nimi}}">
     </div>
     
     <button type="submit" class="btn btn-primary">Tallenna</button>
 </form>
 <p></p>
-
 
 <a class="btn btn-primary" href="{{base_path}}/aiheet">Paluu</a>
 

@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block content %}
-<button type="submit" class="btn btn-primary">Muokkaa otsikkoa, kuvausta tai tekijän tietoja</button>
 <h4>{{aihe.tekija_nimi}}</h4>
 <h1><strong>{{aihe.otsikko}}</strong></h1>
 
@@ -11,20 +10,20 @@
     <li>  
         {{ ohjaaja.enimi }}
         {{ ohjaaja.snimi }}
-        <button type="submit" class="btn-xs btn-danger">Poista ohjaaja</button>
+        <button type="submit" class="btn-xs btn-danger">Poista</button>
     </li>
     {% endfor %}
 </ul>
 <form method="post" action="{{base_path}}/aihe/{{aihe.id}}/lisaa_ohjaaja">
     <div class="col-xs-5">
         <select class="form-control form-group-sm" name="ohjaaja_id">
-            <option disabled selected>Valitse</option>
+            <option disabled selected>Valitse lisättävä ohjaaja</option>
             {% for ohjaaja in kaikki_ohjaajat %} 
             <option value="{{ohjaaja.id}}">{{ohjaaja.enimi}} {{ohjaaja.snimi}}</option>
             {% endfor %}
         </select>
     </div>
-    <button type="submit" class="btn btn-primary"> Lisää ohjaaja</button>
+    <button type="submit" class="btn btn-primary"> Lisää</button>
 </form>
 
 <h3>Tutkimusalat</h3>
@@ -32,52 +31,47 @@
     {% for ala in alat %}
     <li>  
         {{ ala.nimi }}
-        <button type="submit" class="btn-xs btn-danger">Poista tutkimusala</button>
+        <button type="submit" class="btn-xs btn-danger">Poista</button>
     </li>
     {% endfor %}
 </ul>
 <form method="post" action="{{base_path}}/aihe/{{aihe.id}}/lisaa_tutkimusala">
     <div class="col-xs-5">
         <select class="form-control form-group-sm" name="tutkimusala_id">
-            <option disabled selected>Valitse</option>
+            <option disabled selected>Valitse lisättävä tutkimusala</option>
             {% for ala in kaikki_alat %} 
             <option value="{{ala.id}}">{{ala.nimi}}</option>
             {% endfor %}
         </select>
     </div>
-    <button type="submit" class="btn btn-primary"> Lisää tutkimusala</button>
+    <button type="submit" class="btn btn-primary"> Lisää</button>
 </form>
-            
-
-<h3>Tutkimusalat</h3>
-<div class="form-group">
-    <ul>
-        {% for ala in alat %}
-        <li>  
-            {{ ala.nimi }}
-            <a class="label label-danger" >Poista</a>
-
-        </li>
-        {% endfor %}
-    </ul>
-    <button type="submit" class="btn btn-primary">Lisää tutkimusala</button>
-</div>
 
 <h3>Tapahtumat</h3>
-<div class="form-group">
     <ul>
         {% for tapahtuma in tapahtumat %}
         <li>  
             {{ tapahtuma.nimi }}
             ({{ tapahtuma.aika |date('d.m.Y')}})
-            <a class="label label-primary" >Tarkastele</a>
+            <button type="submit" class="btn-xs btn-default">Tarkastele</button>
 
         </li>
         {% endfor %}
     </ul>
-    <button type="submit" class="btn btn-primary">Lisää tapahtuma</button>
-</div>
-
+<form method="post" action="{{base_path}}/aihe/{{aihe.id}}/lisaa_tapahtumatyyppi">
+    <div class="col-xs-5">
+        <select class="form-control form-group-sm" name="tapahtumatyyppi_id">
+            <option disabled selected>Valitse lisättävä tapahtumatyyppi</option>
+            {% for tapahtuma in tapahtumatyyppi %} 
+            <option value="{{tapahtuma.id}}">{{tapahtuma.nimi}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary"> Lisää</button>
+</form>
+            
+<p></p>
+<a href="{{base_path}}/aihe/{{aihe.id}}/aiheen_tiedot" class="btn btn-primary">Muokkaa otsikkoa, kuvausta tai tekijän tietoja</a>
 <p></p>
 
 

@@ -51,5 +51,11 @@ class Aihe extends BaseModel{
         
         return null;
     }
+    
+    public function tallenna() {
+        $query = DB::connection()->prepare('INSERT INTO Aihe (otsikko, kuvaus, tekija_nimi, opnro, luoja, luotu) VALUES (:otsikko, :kuvaus, :tekija_nimi, :opnro, 1, NOW()) RETURNING id');
+        $query->execute(array('otsikko' => $this->otsikko, 'kuvaus' => $this->kuvaus, 'tekija_nimi' => $this->tekija_nimi, 'opnro' => $this->opnro));
+        $row = $query->fetch();
+        $this->id = $row['id'];
+    }
 }
-
