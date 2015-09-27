@@ -17,11 +17,16 @@
 
     public function errors(){
       // Lisätään $errors muuttujaan kaikki virheilmoitukset taulukkona
-      $errors = array();
+      $errors = $this->validate();
+      //$errors = array();
+      
+//      foreach ($errors['validations'] as $joku) {
+//          echo($joku.validations);
+//      }
 
-      foreach($this->validators as $validator){
-        // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
-      }
+//      foreach($this->validators as $validator){
+//        // Kutsu validointimetodia tässä ja lisää sen palauttamat virheet errors-taulukkoon
+//      }
 
       return $errors;
     }

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+{% if message %}
+<div class="alert alert-danger">
+    {{message}}
+</div>
+{% else %}
+<div class="alert alert-success">
+    Sisäänkirjautumistoiminto on tarkoitettu ainoastaan rekisteröityjä ohjaajia varten.
+</div>
+{% endif %}
+  <h1>Kirjaudu sisään</h1>
+
+  <form method="post" action="{{base_path}}/login">
+    <div class="form-group">
+      <label>Sähköpostiosoite</label>
+      <input type="text" class="form-control" name="sposti" value="{{sposti}}">
+    </div>
+
+    <div class="form-group">
+      <label>Salasana</label>
+      <input type="password" class="form-control" name="salasana">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
+  </form>
+{% endblock %}

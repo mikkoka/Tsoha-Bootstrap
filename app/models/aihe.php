@@ -53,9 +53,25 @@ class Aihe extends BaseModel{
     }
     
     public function tallenna() {
-        $query = DB::connection()->prepare('INSERT INTO Aihe (otsikko, kuvaus, tekija_nimi, opnro, luoja, luotu) VALUES (:otsikko, :kuvaus, :tekija_nimi, :opnro, 1, NOW()) RETURNING id');
-        $query->execute(array('otsikko' => $this->otsikko, 'kuvaus' => $this->kuvaus, 'tekija_nimi' => $this->tekija_nimi, 'opnro' => $this->opnro));
+        $query = DB::connection()->prepare('INSERT INTO Aihe (otsikko, kuvaus, tekija_nimi, opnro, luoja, luotu) VALUES (:otsikko, :kuvaus, :tekija_nimi, :opnro, :luoja, NOW()) RETURNING id');
+        $query->execute(array('otsikko' => $this->otsikko, 'kuvaus' => $this->kuvaus, 'tekija_nimi' => $this->tekija_nimi, 'opnro' => $this->opnro, 'luoja' => $this->luoja));
         $row = $query->fetch();
         $this->id = $row['id'];
+    }
+    
+        public function paivita() {
+        $query = DB::connection()->prepare('UPDATE Aihe SET otsikko= :otsikko, kuvaus= :kuvaus, tekija_nimi= :tekija_nimi, opnro= :opnro WHERE id= :id');
+        $query->execute(array('otsikko' => $this->otsikko, 'kuvaus' => $this->kuvaus, 'tekija_nimi' => $this->tekija_nimi, 'opnro' => $this->opnro, 'id' => $this->id));
+    }
+    
+    public function poista() {
+        $query1 = DB::connection()->prepare('DELETE FROM Aiheen_luokitus WHERE aihe= :id');
+        $query1->execute(array('id' => $this->id)); 
+        $query2 = DB::connection()->prepare('DELETE FROM Aiheen_ohjaaja WHERE aihe= :id');
+        $query2->execute(array('id' => $this->id));  
+        $query3 = DB::connection()->prepare('DELETE FROM Edistymistapahtuma WHERE aihe= :id');
+        $query3->execute(array('id' => $this->id));  
+        $query4 = DB::connection()->prepare('DELETE FROM Aihe WHERE id= :id');
+        $query4->execute(array('id' => $this->id));      
     }
 }

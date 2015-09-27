@@ -7,8 +7,23 @@ class AiheenLuokitus extends BaseModel {
     }
     
     public function tallenna() {
-        $query = DB::connection()->prepare('INSERT INTO Aiheen_luokitus (aihe, ala) VALUES (:aihe, :ala)');
-        $query->execute(array('aihe'=>$this->aihe, 'ala'=>$this->ala));
-        $row = $query->fetch();
+
+        try {
+            $query = DB::connection()->prepare('INSERT INTO Aiheen_luokitus (aihe, ala) VALUES (:aihe, :ala)');
+            $query->execute(array('aihe' => $this->aihe, 'ala' => $this->ala));
+        } catch (PDOException $error) {
+            return false;
+        }
     }
+    
+    public function poista() {
+
+        try {
+            $query = DB::connection()->prepare('DELETE FROM Aiheen_luokitus WHERE aihe= :aihe AND ala= :ala');
+            $query->execute(array('aihe' => $this->aihe, 'ala' => $this->ala));
+        } catch (PDOException $error) {
+            return false;
+        }
+    }
+
 }

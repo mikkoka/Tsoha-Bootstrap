@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="alert alert-danger">
+    Rekisteröitymistoiminto on tarkoitettu ainoastaan rekisteröityjä ohjaajia varten. Tarvitset rekisteröityäksesi rekisteröitymistunnuksen.
+</div>
+  <h1>Rekisteröidy ohjaajaksi</h1>
+
+  <form method="post" action="{{base_path}}/login">
+    <div class="form-group">
+      <label>Sähköpostiosoite</label>
+      <input type="text" class="form-control" name="sposti" value="{{sposti}}">
+    </div>
+
+    <div class="form-group">
+      <label>Salasana</label>
+      <input type="password" class="form-control" name="salasana">
+    </div>
+      
+    <div class="form-group">
+      <label>Rekisteröitymistunnus</label>
+      <input type="password" class="form-control" name="tunnus">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
+  </form>
+{% endblock %}

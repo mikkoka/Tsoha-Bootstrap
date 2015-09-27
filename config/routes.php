@@ -16,10 +16,10 @@
     Aihekontrolleri::uusiAihe();
   }); 
   
-  $routes->post('/aiheet/luo_uusi', function() {
-    Aihekontrolleri::luoUusiAihe();
+  $routes->post('/aiheet/uusi', function() {
+    Aihekontrolleri::tallenna();
   }); 
-   
+    
   $routes->get('/aihe/muokkaus', function() {
     HelloWorldController::muokkaus();
   });
@@ -37,31 +37,48 @@
     Aihekontrolleri::edit($id);
   });
   
+  $routes->post('/aihe/:id/muokkaus', function($id) {
+    Aihekontrolleri::muokkaa($id);
+  });
+  
   $routes->post('/aihe/:id/lisaa_ohjaaja', function($id) {
-    Aihekontrolleri::lisaa_ohjaaja($id);
+    Ohjaajakontrolleri::lisaa_aiheen_ohjaaja($id);
   });
   
-  $routes->post('/aihe/:id//lisaa_tapahtumatyyppi', function($id) {
+  $routes->post('/aihe/:aihe/poista_ohjaaja/:ohjaaja', function($aihe, $ohjaaja) {
+    Ohjaajakontrolleri::poista_aiheen_ohjaaja($aihe, $ohjaaja);
+  });
+  
+  $routes->post('/aihe/:aihe/poista_ala/:ala', function($aihe, $ala) {
+    Alakontrolleri::poista_aiheen_luokitus($aihe, $ala);
+});
+
+$routes->post('/aihe/:id/lisaa_tapahtumatyyppi', function($id) {
     Aihekontrolleri::lisaa_tapahtumatyyppi($id);
-  }); 
-  
-  $routes->post('/aihe/:id/lisaa_tutkimusala', function($id) {
-    Aihekontrolleri::lisaa_tutkimusala($id);
-  }); 
-  
-  $routes->get('/aihe/:id/aiheen_tiedot', function($id) {
+});
+
+$routes->post('/aihe/:id/lisaa_tutkimusala', function($id) {
+    Alakontrolleri::lisaa_aiheen_luokitus($id);
+});
+
+$routes->post('/aihe/:id/poista', function($id) {
+    Aihekontrolleri::poista($id);
+});
+
+$routes->get('/aihe/:id/aiheen_tiedot', function($id) {
     Aihekontrolleri::edit_gradu($id);
-  }); 
-  
-  
-  
-  
-  
+});
+
+$routes->get('/login', function() {
+    Ohjaajakontrolleri::login();
+});
+
+$routes->post('/login', function() {
+    Ohjaajakontrolleri::handle_login();
+});
+
+$routes->post('/logout', function() {
+    Ohjaajakontrolleri::logout();
+});
 
 
-  
-  $routes->get('/graduaiheet', function() {
-    HelloWorldController::etusivu();
-  });
-  
-  

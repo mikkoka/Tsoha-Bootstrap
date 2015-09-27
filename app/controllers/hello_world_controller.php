@@ -12,8 +12,17 @@ class HelloWorldController extends BaseController {
     $aiheet = Aihe::all();
     // Kint-luokan dump-metodi tulostaa muuttujan arvon
     Kint::dump($aiheet);
-    Kint::dump($aihe);
-  }
+        Kint::dump($aihe);
+//        $doom = new Aihe(array(
+//            'otsikko' => 'Lotsikko',
+//            'kuvaus' => 'Luvaus',
+//            'tekija_nimi' => 'hehe',
+//            'opnro' => 1
+//        ));
+//        $errors = $doom->errors();
+         Kint::dump($errors);
+
+    }
 
     public static function aiheet() {
         View::make('suunnitelmat/aiheet.html');

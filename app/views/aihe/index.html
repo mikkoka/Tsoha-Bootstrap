@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
+{% if message %}
+<div class="alert alert-success">
+    {{message}}
+</div>
+{% endif %}
 <h1>Hae aiheita</h1>
 <form method="post" action="{{base_path}}/aiheet">
     <div class="form-group">
@@ -19,9 +24,10 @@
         <tr>
             <th>Otsikko</th>
             <th>Aloituspäivä</th>
-
+            
+            {% if user_logged_in %}
             <th></th>
-
+            {% endif %}
         </tr>
     </thead>
 
@@ -30,8 +36,10 @@
         <tr>
             <td><a href="{{base_path}}/aihe/{{aihe.id}}">{{aihe.otsikko}}</a></td>
             <td>{{aihe.luotu|date('d.m.Y')}}</td>
-
+             {% if user_logged_in %}
             <td><a class="btn btn-primary" href="{{base_path}}/aihe/{{aihe.id}}/muokkaus">Muokkaa</a></td>
+            {% endif %}
+        
         </tr>
         
         {% endfor %}
@@ -41,8 +49,9 @@
 </table>
 
 <p></p>
+{% if user_logged_in %}
 <a class="btn btn-primary" href="{{base_path}}/aiheet/uusi">Luo uusi aihe</a>
-
+{% endif %}
 {% endblock %}
 
 

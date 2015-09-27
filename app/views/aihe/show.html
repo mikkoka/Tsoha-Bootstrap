@@ -3,7 +3,7 @@
 <h1>{{aihe.otsikko}}</h1>
   <ul>
     <li><strong>Aloituspäivä:</strong> {{aihe.luotu|date('d.m.Y')}}</li>
-
+    <li><strong>Luoja:</strong> {{luoja.enimi}}  {{luoja.snimi}}</li>
     <li><strong>Ohjaajat:</strong> 
         {% for ohjaaja in ohjaajat %}
         {{ ohjaaja.enimi }}

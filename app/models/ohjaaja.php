@@ -25,7 +25,25 @@ class Ohjaaja extends BaseModel {
         return $ohjaajat;
     }
     
-     public static function find($id) {
+    public static function authenticate($sposti, $salasana) {
+        $query = DB::connection()->prepare('SELECT * FROM Ohjaaja WHERE sposti = :sposti AND salasana = :salasana LIMIT 1');                 
+        $query->execute(array('sposti' => $sposti, 'salasana' => $salasana));
+        $row = $query->fetch();
+        if ($row) {
+            $ohjaaja = new Ohjaaja(Array(
+                'id' => $row['id'],
+                'enimi' => $row['enimi'],
+                'snimi' => $row['snimi'],
+                'salasana' => $row['salasana'],
+                'sposti' => $row['sposti'],
+            ));
+        } else {
+            $ohjaaja = null;
+        }
+        return $ohjaaja; 
+    }
+
+    public static function find($id) {
         $query = DB::connection()
                 ->prepare('SELECT * FROM Ohjaaja WHERE id = :id LIMIT 1');
         $query->execute(array('id'=>$id));
@@ -42,6 +60,23 @@ class Ohjaaja extends BaseModel {
         }       
         return $ohjaaja;
     }
+    
+        public static function findLuoja($aihe) {
+        $query = DB::connection()
+                ->prepare('SELECT enimi, snimi, Ohjaaja.id FROM Ohjaaja, Aihe WHERE Aihe.id = :aihe AND Ohjaaja.id=Aihe.luoja LIMIT 1');
+        $query->execute(array('aihe'=>$aihe));
+        $row = $query->fetch();
+        
+        if($row) {
+            $ohjaaja = new Ohjaaja(Array(
+                'id' => $row['id'],
+                'enimi' => $row['enimi'],
+                'snimi' => $row['snimi'],
+            ));
+        } else { $ohjaaja = null;}      
+        return $ohjaaja;
+    }
+    
     
         public static function findNimi($snimi) {
         $query = DB::connection()->prepare('SELECT * FROM Ohjaaja WHERE snimi = :snimi LIMIT 1');

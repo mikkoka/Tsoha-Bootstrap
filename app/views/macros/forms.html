@@ -1,0 +1,19 @@
+{% macro poisto_nappi_listat(action, text) %}
+<li>
+<div style="display: inline-block;">{{text|default('Lisää teksti!')}}
+    <form method="post" action="{{action}}" style="display: inline-block;">
+        <button type="submit" class="btn btn-xs btn-danger">Poista</button>
+    </form>
+</div>
+</li>
+{% endmacro %}
+
+{% macro poisto_nappi_aihe(action, text) %}
+<div style="display: inline-block;">
+    <form method="post" action="{{action}}" style="display: inline-block;">
+        <h1><strong>{{text}}</strong>
+            <button type="submit" class="btn btn-danger">Poista aihe</button>
+        </h1>
+    </form>
+</div>
+{% endmacro %}

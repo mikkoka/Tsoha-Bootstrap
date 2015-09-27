@@ -39,3 +39,6 @@
   require 'config/routes.php';
 
   $routes->run();
+
+//Valitron\Validator::langDir('/home/mkahri/htdocs/tsoha/vendor/vlucas/valitron/lang'); // always set langDir before lang.
+//Valitron\Validator::lang('fi');

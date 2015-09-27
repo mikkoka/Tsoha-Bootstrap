@@ -1,17 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-<h4>{{aihe.tekija_nimi}}</h4>
-<h1><strong>{{aihe.otsikko}}</strong></h1>
+{% import "macros/forms.html" as forms %}
+<h4>{{aihe.tekija_nimi}} (aiheen loi {{luoja.enimi}} {{luoja.snimi}} {{aihe.luotu|date('d.m.Y')}})</h4>
+{{forms.poisto_nappi_aihe("#{base_path}/aihe/#{aihe.id}/poista", "#{aihe.otsikko}")}}
 
 
 <h3>Ohjaajat</h3>
 <ul>
     {% for ohjaaja in ohjaajat %}
-    <li>  
-        {{ ohjaaja.enimi }}
-        {{ ohjaaja.snimi }}
-        <button type="submit" class="btn-xs btn-danger">Poista</button>
-    </li>
+        {{forms.poisto_nappi_listat("#{base_path}/aihe/#{aihe.id}/poista_ohjaaja/#{ohjaaja.id}", "#{ ohjaaja.enimi } #{ ohjaaja.snimi }")}}
     {% endfor %}
 </ul>
 <form method="post" action="{{base_path}}/aihe/{{aihe.id}}/lisaa_ohjaaja">
@@ -23,18 +20,16 @@
             {% endfor %}
         </select>
     </div>
-    <button type="submit" class="btn btn-primary"> Lisää</button>
+    <button type="submit" class="btn btn-primary">Lisää</button>
 </form>
 
 <h3>Tutkimusalat</h3>
 <ul>
     {% for ala in alat %}
-    <li>  
-        {{ ala.nimi }}
-        <button type="submit" class="btn-xs btn-danger">Poista</button>
-    </li>
+        {{forms.poisto_nappi_listat("#{base_path}/aihe/#{aihe.id}/poista_ala/#{ala.id}", "#{ala.nimi}")}}
     {% endfor %}
 </ul>
+
 <form method="post" action="{{base_path}}/aihe/{{aihe.id}}/lisaa_tutkimusala">
     <div class="col-xs-5">
         <select class="form-control form-group-sm" name="tutkimusala_id">
@@ -44,7 +39,7 @@
             {% endfor %}
         </select>
     </div>
-    <button type="submit" class="btn btn-primary"> Lisää</button>
+    <button type="submit" class="btn btn-primary">Lisää</button>
 </form>
 
 <h3>Tapahtumat</h3>
@@ -53,7 +48,7 @@
         <li>  
             {{ tapahtuma.nimi }}
             ({{ tapahtuma.aika |date('d.m.Y')}})
-            <button type="submit" class="btn-xs btn-default">Tarkastele</button>
+            <button type="submit" class="btn btn-xs btn-default">Tarkastele</button>
 
         </li>
         {% endfor %}
