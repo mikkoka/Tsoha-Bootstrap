@@ -7,12 +7,16 @@ Yleisiä linkkejä:
 
 ## Työn aihe
 
-Laita tähän aihekuvaus tai [linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Graduaiheet.html)
+[Linkki valmiiseen aiheeseen](http://advancedkittenry.github.io/suunnittelu_ja_tyoymparisto/aiheet/Graduaiheet.html)
 
-## Näkymäsuunnitelmat (12.9.2015)
+## Kirjautumistiedot ohjaajia varten (27.9.2015)
 
-* [Etusivu](http://mkahri.users.cs.helsinki.fi/tsoha/graduaiheet)
-* [Aiheitten selailu](http://mkahri.users.cs.helsinki.fi/tsoha/aiheet)
-* [Aiheen tietojen katsominen (opiskelija)](http://mkahri.users.cs.helsinki.fi/tsoha/aiheet/aihe)
-* [Aiheen muokkaus (ohjaaja)](http://mkahri.users.cs.helsinki.fi/tsoha/aiheet/aihe/muokkaus) 
-* [Tapahtuman muokkaus (ohjaaja)](http://mkahri.users.cs.helsinki.fi/tsoha/aiheet/aihe/tapahtuma)
+salasana                       |Tunnit 
+-------------------------------|----------
+olli.ohjausmestari@helsinki.fi | Olli123 
+kalle.z.kakkonen@helsinki.fi   | Kalle123
+
+
+* [Kirjautuminen](http://mkahri.users.cs.helsinki.fi/tsoha/login)
+* [Etusivu](http://mkahri.users.cs.helsinki.fi/tsoha/)
+

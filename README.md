@@ -11,7 +11,7 @@ Yleisiä linkkejä:
 
 ## Kirjautumistiedot ohjaajia varten (27.9.2015)
 
-salasana                       |Tunnit 
+sähköpostiosoite               |salasana 
 -------------------------------|----------
 olli.ohjausmestari@helsinki.fi | Olli123 
 kalle.z.kakkonen@helsinki.fi   | Kalle123
