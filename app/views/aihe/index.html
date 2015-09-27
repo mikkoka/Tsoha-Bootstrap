@@ -24,10 +24,6 @@
         <tr>
             <th>Otsikko</th>
             <th>Aloituspäivä</th>
-            
-            {% if user_logged_in %}
-            <th></th>
-            {% endif %}
         </tr>
     </thead>
 
@@ -35,15 +31,9 @@
         {% for aihe in aiheet %}
         <tr>
             <td><a href="{{base_path}}/aihe/{{aihe.id}}">{{aihe.otsikko}}</a></td>
-            <td>{{aihe.luotu|date('d.m.Y')}}</td>
-             {% if user_logged_in %}
-            <td><a class="btn btn-primary" href="{{base_path}}/aihe/{{aihe.id}}/muokkaus">Muokkaa</a></td>
-            {% endif %}
-        
-        </tr>
-        
-        {% endfor %}
-        
+            <td>{{aihe.luotu|date('d.m.Y')}}</td>        
+        </tr>        
+        {% endfor %}        
         
     </tbody>
 </table>

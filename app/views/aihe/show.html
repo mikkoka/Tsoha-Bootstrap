@@ -1,29 +1,32 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>{{aihe.otsikko}}</h1>
+{% import "macros/forms.html" as forms %}
+{% if user_logged_in %}
+{{forms.muokkaus_nappi_aihe("#{base_path}/aihe/#{aihe.id}/muokkaus", "#{aihe.otsikko}")}}
+{% else %}<h1>{{aihe.otsikko}}</h1>
+{% endif %}
   <ul>
     <li><strong>Aloituspäivä:</strong> {{aihe.luotu|date('d.m.Y')}}</li>
     <li><strong>Luoja:</strong> {{luoja.enimi}}  {{luoja.snimi}}</li>
+    {% if valmis.aika or user_logged_in %}
+    <li>
+        <strong>Tekijä: </strong>{{aihe.tekija_nimi}}
+    </li>
+    {% endif %}    
     <li><strong>Ohjaajat:</strong> 
         {% for ohjaaja in ohjaajat %}
         {{ ohjaaja.enimi }}
-        {{ ohjaaja.snimi }}
-        {% if not loop.last %},{% endif %}
+        {{ ohjaaja.snimi}}{% if not loop.last %},{% endif %}   
         {% endfor %}
     </li>
+
     <li><strong>Tutkimusalat:</strong>
         {% for ala in alat %}
-        {{ ala.nimi}}
-        {% if not loop.last %},{% endif %}
+        {{ ala.nimi}}{% if not loop.last %},{% endif %}
         {% endfor %}
     </li>  
     <li><strong>Status:</strong> {% if valmis.aika %}<label class="label label-success">Valmis</label>{% else %}<label class="label label-danger">Kesken</label>{% endif %}</li>
     <li><strong>Edellinen tapahtuma:</strong> {% if tapahtuma.aika %}{{tapahtuma.aika|date('d.m.Y')}}{% else %}<label class="label label-danger">Ei tapahtumia</label>{% endif %}</li>
-    {% if valmis.aika %}
-    <li>
-        <strong>Tekijä: {{aihe.tekija_nimi}}</strong>
-    </li>
-    {% endif %}
   </ul>
   <p>
     {{aihe.kuvaus}}

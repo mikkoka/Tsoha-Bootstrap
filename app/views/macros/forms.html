@@ -2,7 +2,7 @@
 <li>
 <div style="display: inline-block;">{{text|default('Lisää teksti!')}}
     <form method="post" action="{{action}}" style="display: inline-block;">
-        <button type="submit" class="btn btn-xs btn-danger">Poista</button>
+        <button type="submit" class="btn btn-xs btn-default">Poista</button>
     </form>
 </div>
 </li>
@@ -15,5 +15,12 @@
             <button type="submit" class="btn btn-danger">Poista aihe</button>
         </h1>
     </form>
+</div>
+{% endmacro %}
+
+{% macro muokkaus_nappi_aihe(href, text) %}
+<div style="display: inline-block;">
+        <h1>{{text}}
+            <a href="{{href}}" class="btn btn-primary">Muokkaa aihetta</a></h1>
 </div>
 {% endmacro %}
