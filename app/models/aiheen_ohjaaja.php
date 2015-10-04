@@ -13,8 +13,6 @@ class AiheenOhjaaja extends BaseModel {
             $query->execute(array('aihe' => $this->aihe, 'ohjaaja' => $this->ohjaaja));
         } catch (PDOException $error) {
             return false;
-//            Kint::dump($error);
-//            die();
         }
     }
     

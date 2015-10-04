@@ -17,6 +17,7 @@ class Aihekontrolleri extends BaseController {
     public static $kieli = '/home/mkahri/htdocs/tsoha/vendor/vlucas/valitron/lang';
     
     public static function edit($id) {
+        self::check_logged_in();
         $aihe = Aihe::find($id);
         $ohjaajat = Ohjaaja::findOhjaajat($id);
         $luoja = Ohjaaja::findLuoja($id);
@@ -38,6 +39,7 @@ class Aihekontrolleri extends BaseController {
     }  
     
         public static function edit_gradu($id) {
+        self::check_logged_in();
         $aihe = Aihe::find($id);
         
         View::make('aihe/gradu_edit.html', array(
@@ -49,6 +51,24 @@ class Aihekontrolleri extends BaseController {
         $aiheet = Aihe::all();
         
         View::make('aihe/index.html', array('aiheet'=>$aiheet));
+    }
+    
+    public static function search() {
+        $params = $_GET;        
+        if (empty($params['tutkimusala']) && !empty($params['snimi'])) {
+            $aiheet = Aihe::ohjaajanAiheet($params['snimi']);
+            $message =  "Hakusana '" . $params['snimi'] . "' tuotti seuraavat tulokset:";
+        } else if (empty($params['snimi']) && !empty($params['tutkimusala'])) {
+            $aiheet = Aihe::alanAiheet($params['tutkimusala']);
+            $message = "Hakusana '" . $params['tutkimusala'] . "' tuotti seuraavat tulokset:"; 
+        } else if (empty($params['snimi']) && empty($params['tutkimusala'])) {
+           header('Location: ' . BASE_PATH . '/aiheet');
+           exit;
+        } else {
+            $aiheet = Aihe::ohjaajanAiheetAlalla($params['snimi'], $params['tutkimusala']);
+            $message = "Hakusanat '". $params['snimi'] . "' ja '" . $params['tutkimusala'] . "' tuottivat seuraavat tulokset:"; 
+        }
+        View::make('aihe/index.html', array('aiheet' => $aiheet, 'haku' => $message));
     }
     
     public static function show($id) {
@@ -70,6 +90,7 @@ class Aihekontrolleri extends BaseController {
     
     
     public static function muokkaa($id) {
+        self::check_logged_in();
         $params = $_POST;
         $attribuutit = array(
             'otsikko' => $params['otsikko'],
@@ -95,7 +116,8 @@ class Aihekontrolleri extends BaseController {
         }         
     }
     
-    public static function tallenna() {              
+    public static function tallenna() {
+        self::check_logged_in();
         $params = $_POST;
         $attribuutit = array(
             'otsikko' => $params['otsikko'],
@@ -122,12 +144,14 @@ class Aihekontrolleri extends BaseController {
     }
     
     public static function poista($id) {
+        self::check_logged_in();
         $aihe = new Aihe(array('id' => $id));
         $aihe->poista();
         Redirect::to('/aiheet', array('message' => 'Aihe poistettu onnistuneesti!'));
     }
     
-    public static function uusiAihe() {  
+    public static function uusiAihe() {
+        self::check_logged_in();
         View::make('aihe/add.html');
     }         
 }

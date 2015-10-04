@@ -5,20 +5,28 @@
     {{message}}
 </div>
 {% endif %}
+
 <h1>Hae aiheita</h1>
-<form method="post" action="{{base_path}}/aiheet">
+<form method="get" action="{{base_path}}/aiheet/haku">
     <div class="form-group">
         <label>Tutkimusala, johon graduaihe liittyy</label>
-        <input type="text" name="ala" class="form-control" value="Relaatiotietokantajärjestelmät">
+        <input id="tutkimusalat" class="form-control" name="tutkimusala" placeholder="Syötä tutkimusala (esim. 'relaatiotietokannat')">
     </div>
     <div class="form-group">
         <label>Gradun ohjaajan sukunimi</label>
-        <input type="text" name="ohjaaja" class="form-control" value="Ohjausmestari">
+        <input id="ohjaajat" class="form-control" name="snimi" placeholder="Syötä sukunimi (esim. 'ohjausmestari')">
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-primary">Hae</button>
     </div>
 </form>
+
+{% if haku %}
+<div class="alert alert-success">
+    <strong>{{haku}}</strong>
+</div>
+{% endif %}
+
 <table class="table table-striped table-bordered">
     <thead>
         <tr>
@@ -42,6 +50,10 @@
 {% if user_logged_in %}
 <a class="btn btn-primary" href="{{base_path}}/aiheet/uusi">Luo uusi aihe</a>
 {% endif %}
+
+</head>
+<body>
+
 {% endblock %}
 
 

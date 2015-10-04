@@ -8,7 +8,7 @@ class Aihe extends BaseModel{
     }
     
     public static function all() {
-        $query = DB::connection()->prepare('SELECT * FROM Aihe');
+        $query = DB::connection()->prepare('SELECT * FROM Aihe ORDER BY luotu DESC');
         $query->execute();
         $rows = $query->fetchAll();
         $aiheet = array();
@@ -28,6 +28,60 @@ class Aihe extends BaseModel{
         
         return $aiheet;
     }
+    
+        public static function ohjaajanAiheet($ohjaaja) {
+        $query = DB::connection()->prepare('SELECT Aihe.id AS id, otsikko, luotu FROM Aihe, Aiheen_ohjaaja, Ohjaaja WHERE Ohjaaja.snimi = :snimi AND Aiheen_ohjaaja.aihe = Aihe.id AND Aiheen_ohjaaja.ohjaaja = Ohjaaja.id ORDER BY luotu DESC');
+        $query->execute(array('snimi' => $ohjaaja));
+        $rows = $query->fetchAll();
+        $aiheet = array();
+        
+        foreach($rows as $row) {
+            $aiheet[] = new Aihe(array(
+                'id' => $row['id'],
+                'luotu' => $row['luotu'],                
+                'otsikko' => $row['otsikko']
+                ));
+        }
+        
+        return $aiheet;
+    }
+    
+        public static function alanAiheet($ala) {
+        $query = DB::connection()->prepare('SELECT Aihe.id AS id, otsikko, luotu FROM Aihe, Aiheen_luokitus, Tutkimusala WHERE Tutkimusala.nimi = :nimi AND Aiheen_luokitus.aihe = Aihe.id AND Aiheen_luokitus.ala = Tutkimusala.id ORDER BY luotu DESC');
+        $query->execute(array('nimi' => $ala));
+        $rows = $query->fetchAll();
+        $aiheet = array();
+        
+        foreach($rows as $row) {
+            $aiheet[] = new Aihe(array(
+                'id' => $row['id'],
+                'luotu' => $row['luotu'],                 
+                'otsikko' => $row['otsikko']
+                ));
+        }
+        
+        return $aiheet;
+    }
+    
+        public static function ohjaajanAiheetAlalla($ohjaaja, $ala) {
+        
+        $query = DB::connection()->prepare('SELECT Aihe.id AS id, otsikko, luotu FROM Aihe, Aiheen_ohjaaja, Ohjaaja, Aiheen_luokitus, Tutkimusala WHERE Ohjaaja.snimi = :snimi AND Aiheen_ohjaaja.aihe = Aihe.id AND Aiheen_ohjaaja.ohjaaja = Ohjaaja.id AND Tutkimusala.nimi = :nimi AND Aiheen_luokitus.aihe = Aihe.id AND Aiheen_luokitus.ala = Tutkimusala.id ORDER BY luotu DESC');
+        $query->execute(
+                array('snimi' => $ohjaaja,
+                    'nimi' => $ala));
+        $rows = $query->fetchAll();
+        $aiheet = array();
+
+        foreach($rows as $row) {
+            $aiheet[] = new Aihe(array(
+                'id' => $row['id'],
+                'luotu' => $row['luotu'], 
+                'otsikko' => $row['otsikko']
+                ));
+        }
+        
+        return $aiheet;
+    }    
     
     public static function find($id) {
         $query = DB::connection()->prepare('SELECT * FROM Aihe WHERE id = :id LIMIT 1');

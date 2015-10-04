@@ -11,9 +11,21 @@
   $routes->get('/aiheet', function() {
     Aihekontrolleri::index();
   });
+  
+  $routes->get('/aiheet/haku', function() {
+    Aihekontrolleri::search();
+  });
 
   $routes->get('/aiheet/uusi', function() {
     Aihekontrolleri::uusiAihe();
+  }); 
+  
+   $routes->get('/ohjaajat', function() {
+    Ohjaajakontrolleri::ohjaajalista();
+  }); 
+  
+   $routes->get('/alat', function() {
+    Alakontrolleri::tutkimusalalista();
   }); 
   
   $routes->post('/aiheet/uusi', function() {

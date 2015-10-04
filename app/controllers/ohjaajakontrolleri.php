@@ -4,6 +4,7 @@
 class Ohjaajakontrolleri extends BaseController {
 
     public static function lisaa_aiheen_ohjaaja($id) {
+        self::check_logged_in();
         $params = $_POST;
         $uusi_ohjaaja = new AiheenOhjaaja(array(
             'aihe' => $id,
@@ -14,6 +15,7 @@ class Ohjaajakontrolleri extends BaseController {
     }
     
         public static function poista_aiheen_ohjaaja($aihe, $ohjaaja) {
+        self::check_logged_in();    
         $poistettava_ohjaaja = new AiheenOhjaaja(array(
             'aihe' => $aihe,
             'ohjaaja' => $ohjaaja
@@ -41,10 +43,13 @@ class Ohjaajakontrolleri extends BaseController {
         }
     }
     
-    public static function logout(){
-    $_SESSION['user'] = null;
-    Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
-  }
+    public static function logout() {
+        $_SESSION['user'] = null;
+        Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
+    }
+
+    public static function ohjaajalista() {
+        $kaikki_ohjaajat = Ohjaaja::familynames();
+        echo json_encode($kaikki_ohjaajat);
+    }
 }
-
-

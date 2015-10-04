@@ -25,6 +25,21 @@ class Ohjaaja extends BaseModel {
         return $ohjaajat;
     }
     
+    public static function familynames() {
+        $query = DB::connection()->prepare('SELECT snimi from Ohjaaja');
+        $query->execute();
+        $rows = $query->fetchAll();
+        $ohjaajat = array();
+        
+        foreach ($rows as $row) {
+            $ohjaajat[] = new Ohjaaja(Array(
+                'snimi' => $row['snimi']
+            ));
+        }
+        
+        return $ohjaajat;
+    }
+    
     public static function authenticate($sposti, $salasana) {
         $query = DB::connection()->prepare('SELECT * FROM Ohjaaja WHERE sposti = :sposti AND salasana = :salasana LIMIT 1');                 
         $query->execute(array('sposti' => $sposti, 'salasana' => $salasana));
