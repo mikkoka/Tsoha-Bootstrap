@@ -1,6 +1,6 @@
 <?php
 
-class AiheenLuokitus extends BaseModel {
+class FieldOfTopic extends BaseModel {
     public $aihe, $ala; 
     public function __construct($attributes) {
         parent::__construct($attributes);

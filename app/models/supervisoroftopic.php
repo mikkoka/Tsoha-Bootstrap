@@ -1,12 +1,12 @@
 <?php
 
-class AiheenOhjaaja extends BaseModel {
+class SupervisorOfTopic extends BaseModel {
     public $aihe, $ohjaaja; 
     public function __construct($attributes) {
         parent::__construct($attributes);
     }
     
-    public function tallenna() {
+    public function save() {
         
         try {
             $query = DB::connection()->prepare('INSERT INTO Aiheen_ohjaaja (aihe, ohjaaja) VALUES (:aihe, :ohjaaja)');
@@ -16,7 +16,7 @@ class AiheenOhjaaja extends BaseModel {
         }
     }
     
-    public function poista() {
+    public function destroy() {
 
         try {
             $query = DB::connection()->prepare('DELETE FROM Aiheen_ohjaaja WHERE aihe= :aihe AND ohjaaja= :ohjaaja');

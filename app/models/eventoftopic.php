@@ -1,6 +1,6 @@
 <?php
 
-class Edistymistapahtuma extends BaseModel {
+class EventOfTopic extends BaseModel {
 
     public $kommentti, $aika, $tyyppi, $aihe, $merkitsija, $nimi;
 
@@ -18,7 +18,7 @@ class Edistymistapahtuma extends BaseModel {
         $tapahtumat = array();
 
         foreach ($rows as $row) {
-            $tapahtumat[] = new Edistymistapahtuma(array(
+            $tapahtumat[] = new EventOfTopic(array(
                 'kommentti' => $row['kommentti'],
                 'aika' => $row['aika'],
                 'tyyppi' => $row['tyyppi'],
@@ -39,7 +39,7 @@ class Edistymistapahtuma extends BaseModel {
         $tapahtumat = array();
 
         foreach ($rows as $row) {
-            $tapahtumat[] = new Edistymistapahtuma(array(
+            $tapahtumat[] = new EventOfTopic(array(
                 'kommentti' => $row['kommentti'],
                 'aika' => $row['aika'],
                 'tyyppi' => $row['tyyppi'],
@@ -59,7 +59,7 @@ class Edistymistapahtuma extends BaseModel {
         $row = $query->fetch();
 
         if($row) {
-            $edistymistapahtuma = new Edistymistapahtuma(array(
+            $edistymistapahtuma = new EventOfTopic(array(
                 'kommentti' => $row['kommentti'],
                 'aika' => $row['aika'],
                 'tyyppi' => $row['tyyppi'],
@@ -73,7 +73,6 @@ class Edistymistapahtuma extends BaseModel {
         return null;
     }
 
-    
     public static function findLatest($aihe) {
         $query = DB::connection()
                 ->prepare('SELECT MAX(aika) AS maxaika FROM Edistymistapahtuma WHERE aihe = :aihe LIMIT 1');
@@ -81,7 +80,7 @@ class Edistymistapahtuma extends BaseModel {
         $row = $query->fetch();
 
         if ($row) {
-            $edistymistapahtuma = new Edistymistapahtuma(array(
+            $edistymistapahtuma = new EventOfTopic(array(
                 'aika' => $row['maxaika']
             ));
 
@@ -91,14 +90,14 @@ class Edistymistapahtuma extends BaseModel {
         return null;
     }
     
-    public static function valmis($aihe) {
+    public static function ready($aihe) {
         $query = DB::connection()
                 ->prepare('SELECT MAX(aika) AS maxaika FROM Edistymistapahtuma WHERE aihe = :aihe AND tyyppi = 3 LIMIT 1');
         $query->execute(array('aihe' => $aihe));
         $row = $query->fetch();
 
         if ($row) {
-            $edistymistapahtuma = new Edistymistapahtuma(array(
+            $edistymistapahtuma = new EventOfTopic(array(
                 'aika' => $row['maxaika']
             ));
 
@@ -116,7 +115,7 @@ class Edistymistapahtuma extends BaseModel {
         $tapahtumat = array();
 
         foreach ($rows as $row) {
-            $tapahtumat[] = new Edistymistapahtuma(array(
+            $tapahtumat[] = new EventOfTopic(array(
                 'kommentti' => $row['kommentti'],
                 'aika' => $row['aika'],
                 'tyyppi' => $row['tyyppi'],

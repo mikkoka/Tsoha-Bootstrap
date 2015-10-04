@@ -1,6 +1,6 @@
 <?php
 
-class Aihe extends BaseModel{
+class Topic extends BaseModel{
     public $id, $luotu, $luoja, $otsikko, $kuvaus, $tekija_nimi, $opnro, $linkki;
     
     public function __construct($attributes) {
@@ -14,7 +14,7 @@ class Aihe extends BaseModel{
         $aiheet = array();
         
         foreach($rows as $row) {
-            $aiheet[] = new Aihe(array(
+            $aiheet[] = new Topic(array(
                 'id' => $row['id'],
                 'luotu' => $row['luotu'],
                 'luoja' => $row['luoja'],
@@ -36,7 +36,7 @@ class Aihe extends BaseModel{
         $aiheet = array();
         
         foreach($rows as $row) {
-            $aiheet[] = new Aihe(array(
+            $aiheet[] = new Topic(array(
                 'id' => $row['id'],
                 'luotu' => $row['luotu'],                
                 'otsikko' => $row['otsikko']
@@ -53,7 +53,7 @@ class Aihe extends BaseModel{
         $aiheet = array();
         
         foreach($rows as $row) {
-            $aiheet[] = new Aihe(array(
+            $aiheet[] = new Topic(array(
                 'id' => $row['id'],
                 'luotu' => $row['luotu'],                 
                 'otsikko' => $row['otsikko']
@@ -73,7 +73,7 @@ class Aihe extends BaseModel{
         $aiheet = array();
 
         foreach($rows as $row) {
-            $aiheet[] = new Aihe(array(
+            $aiheet[] = new Topic(array(
                 'id' => $row['id'],
                 'luotu' => $row['luotu'], 
                 'otsikko' => $row['otsikko']
@@ -89,7 +89,7 @@ class Aihe extends BaseModel{
         $row = $query->fetch();
         
         if($row) {
-            $aihe = new Aihe(array(
+            $aihe = new Topic(array(
                 'id' => $row['id'],
                 'luotu' => $row['luotu'],
                 'luoja' => $row['luoja'],

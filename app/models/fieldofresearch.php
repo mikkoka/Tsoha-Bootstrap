@@ -1,6 +1,6 @@
 <?php
 
-class Tutkimusala extends BaseModel {
+class FieldofResearch extends BaseModel {
     public $id, $nimi;
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -13,7 +13,7 @@ class Tutkimusala extends BaseModel {
         $tutkimusalat = array();
         
         foreach ($rows as $row) {
-            $tutkimusalat[] = new Tutkimusala(Array(
+            $tutkimusalat[] = new FieldofResearch(Array(
                 'id' => $row['id'],
                 'nimi' => $row['nimi']
             ));
@@ -29,7 +29,7 @@ class Tutkimusala extends BaseModel {
         $tutkimusalat = array();
         
         foreach ($rows as $row) {
-            $tutkimusalat[] = new Tutkimusala(Array(
+            $tutkimusalat[] = new FieldofResearch(Array(
                 'id' => $row['id'],
                 'nimi' => $row['nimi']
             ));

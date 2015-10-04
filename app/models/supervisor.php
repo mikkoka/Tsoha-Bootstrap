@@ -1,6 +1,6 @@
 <?php
 
-class Ohjaaja extends BaseModel {
+class Supervisor extends BaseModel {
     public $id, $enimi, $snimi, $salasana, $sposti; 
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -13,7 +13,7 @@ class Ohjaaja extends BaseModel {
         $ohjaajat = array();
         
         foreach ($rows as $row) {
-            $ohjaajat[] = new Ohjaaja(Array(
+            $ohjaajat[] = new Supervisor(Array(
                 'id' => $row['id'],
                 'enimi' => $row['enimi'],
                 'snimi' => $row['snimi'],
@@ -32,7 +32,7 @@ class Ohjaaja extends BaseModel {
         $ohjaajat = array();
         
         foreach ($rows as $row) {
-            $ohjaajat[] = new Ohjaaja(Array(
+            $ohjaajat[] = new Supervisor(Array(
                 'snimi' => $row['snimi']
             ));
         }
@@ -45,7 +45,7 @@ class Ohjaaja extends BaseModel {
         $query->execute(array('sposti' => $sposti, 'salasana' => $salasana));
         $row = $query->fetch();
         if ($row) {
-            $ohjaaja = new Ohjaaja(Array(
+            $ohjaaja = new Supervisor(Array(
                 'id' => $row['id'],
                 'enimi' => $row['enimi'],
                 'snimi' => $row['snimi'],
@@ -65,7 +65,7 @@ class Ohjaaja extends BaseModel {
         $row = $query->fetch();
         
         if($row) {
-            $ohjaaja = new Ohjaaja(Array(
+            $ohjaaja = new Supervisor(Array(
                 'id' => $row['id'],
                 'enimi' => $row['enimi'],
                 'snimi' => $row['snimi'],
@@ -83,7 +83,7 @@ class Ohjaaja extends BaseModel {
         $row = $query->fetch();
         
         if($row) {
-            $ohjaaja = new Ohjaaja(Array(
+            $ohjaaja = new Supervisor(Array(
                 'id' => $row['id'],
                 'enimi' => $row['enimi'],
                 'snimi' => $row['snimi'],
@@ -99,7 +99,7 @@ class Ohjaaja extends BaseModel {
         $row = $query->fetch();
         
         if($row) {
-            $ohjaaja = new Ohjaaja(Array(
+            $ohjaaja = new Supervisor(Array(
                 'id' => $row['id'],
                 'enimi' => $row['enimi'],
                 'snimi' => $row['snimi'],
@@ -118,7 +118,7 @@ class Ohjaaja extends BaseModel {
         $ohajaajat = array();
         
         foreach ($rows as $row) {
-            $ohajaajat[] = new Ohjaaja(Array(
+            $ohajaajat[] = new Supervisor(Array(
                 'id' => $row['id'],
                 'enimi' => $row['enimi'],
                 'snimi' => $row['snimi'],

@@ -6,7 +6,7 @@
       
       if(isset($_SESSION['user'])){
       $user_id = $_SESSION['user'];
-      $user = Ohjaaja::find($user_id);
+      $user = Supervisor::find($user_id);
 
       return $user;
     }

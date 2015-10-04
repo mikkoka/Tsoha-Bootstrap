@@ -1,6 +1,6 @@
 <?php
 
-class Tapahtumatyyppi extends BaseModel {
+class EventType extends BaseModel {
     public $id, $nimi;
     public function __construct($attributes) {
         parent::__construct($attributes);
@@ -13,7 +13,7 @@ class Tapahtumatyyppi extends BaseModel {
         $tapahtumatyypit = array();
         
         foreach ($rows as $row) {
-            $tapahtumatyypit[] = new Tapahtumatyyppi(Array(
+            $tapahtumatyypit[] = new EventType(Array(
                 'id' => $row['id'],
                 'nimi' => $row['nimi']
             ));

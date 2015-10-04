@@ -155,10 +155,26 @@ Yksi gradu voi liittyä useaan tutkimusalaan, ja tutkimusala useaan graduun.
 \section{Relaatiotietokantakaavio}
 
 \includegraphics [width=7in]{classDiagram1.png}
-\vspace{2em}
 
 \section{Järjestelmän yleisrakenne}
+
+\begin{par}
+Tietokantasovellusta tehdessä on noudatettu MVC-mallia. Kontrollerit, näkymät ja mallit sijaitsevat hakemistoissa controllers, views- ja models. Käytetyt apukirjastot on sijoitettu hakemistoon lib ja asetukset löytyvät kansion config tiedostoista. Tietokannan taulujen luontiin käytetyt komennot löytyvät kansiosta sql. Järjestelmän hakutoiminnon toteutuksessa käytetty javastcript -koodi löytyy tiedostosta assets/js/site.js.
+\end{par}\vspace{1em}
+\begin{par}
+Tiedostojen, luokkien ja funktioiden nimissä on käytetty englannin kieltä, muuttujien nimissä ja reiteissä suomen kieltä. Malliluokkien nimet ovat englanninkielisiä käännöksiä tietokannan suomenkielisten taulujen nimistä. Kontrolleriluokkien nimet ovat alkuosaltaan viittauksia näihin nimiin, loppuosan ollessa aina \textit{controller.} Tallentamiseen liittyvissä funktioitten nimissä on mahdollisuuksien mukaan käytetty sanaa \textit{save}, taulujen muuttamiseen liittyvien funktioiden nimissä sanaa \textit{update}, ja poistamiseen liittyvissä sanaa \textit{destroy}.  
+\end{par}\vspace{1em}
+
 \section{Käyttöliittymä ja järjestelmän komponentit}
+
+\includegraphics [width=5in]{komponentit1.png}
+\vspace{2em}
+\begin{par}
+Muokkaussivulla 1 lisätään ja poistetaan aiheeseen ohjaajia, tutkimusaloja ja tapahtumia. Poiston yhteydessä tapahtuu uudelleenohjaus samalle sivulle. Muokkaussivulla 2 muokataan aiheen varsinaisia tietoja -- sen nimeä, tekijää ja kuvausta. Tapahtuman muokkaussivulla ohjaaja voi tarkastella ja tehdä tapahtumaan liittyviä muistiinpanoja.\end{par}
+ \begin{par}\vspace{1em}
+Sivustolla on navigaatiopalkki, jonka kautta jokainen käyttäjä pääsee mistä tahansa aloitussivulle, aiheitten selaissivulle, kirjautumissivulle tai rekisteröitymissivulle. Aiheen poisto on mahdollista muokkaussivuilla 1 ja 2, ja aiheen poiston jälkeen tapahtuu uudelleenohjaus aiheitten selaussivulle.
+\end{par}
+
 \section{Asennustiedot}
 \section{Käynnistys- / käyttöohje}
 \begin{par}
@@ -176,7 +192,7 @@ Harjoitustyö on asennettuna osoitteessa \href{http://mkahri.users.cs.helsinki.f
 
 \vspace{2em}
 
-Järjestelmään voi siihen kirjauduttuuaan (sen nykytilassa) lisätä, poistaa ja muokata aiheita sekä aiheisiin liittyviä ohjaaja- ja tutkimusalatietoja. Edistymistapahtumien lisäys- ja muokkaamistoimintojen toteutus on toistaiseksi kesken. Myös ohjaajan rekisteröitymistoiminnon toteutus on kesken.
+Järjestelmään voi siihen kirjauduttuaan (sen nykytilassa) lisätä, poistaa ja muokata aiheita sekä aiheisiin liittyviä ohjaaja- ja tutkimusalatietoja. Edistymistapahtumien lisäys- ja muokkaamistoimintojen toteutus on toistaiseksi kesken. Myös ohjaajan rekisteröitymistoiminnon toteutus on kesken.
 
 \end{par}\vspace{1em}
 

@@ -1,26 +1,32 @@
 <?php
 
 
-class Ohjaajakontrolleri extends BaseController {
 
-    public static function lisaa_aiheen_ohjaaja($id) {
+class SupervisorController extends BaseController {
+    
+    public static function supervisors() {
+        $kaikki_ohjaajat = Supervisor::familynames();
+        echo json_encode($kaikki_ohjaajat);
+    }
+
+    public static function addSupervisor($id) {
         self::check_logged_in();
         $params = $_POST;
-        $uusi_ohjaaja = new AiheenOhjaaja(array(
+        $uusi_ohjaaja = new SupervisorOfTopic(array(
             'aihe' => $id,
             'ohjaaja' => $params['ohjaaja_id']
         ));
-        $uusi_ohjaaja->tallenna();
+        $uusi_ohjaaja->save();
         Redirect::to('/aihe/' . $id . '/muokkaus');
     }
     
-        public static function poista_aiheen_ohjaaja($aihe, $ohjaaja) {
+        public static function removeSupervisor($aihe, $ohjaaja) {
         self::check_logged_in();    
-        $poistettava_ohjaaja = new AiheenOhjaaja(array(
+        $poistettava_ohjaaja = new SupervisorOfTopic(array(
             'aihe' => $aihe,
             'ohjaaja' => $ohjaaja
         ));
-        $poistettava_ohjaaja->poista();
+        $poistettava_ohjaaja->destroy();
         Redirect::to('/aihe/' . $aihe . '/muokkaus');
     }
     
@@ -28,15 +34,12 @@ class Ohjaajakontrolleri extends BaseController {
         View::make('ohjaaja/login.html');
     }
     
-    public static function handle_login() {
+    public static function handleLogin() {
         $params = $_POST;
-        
-        
-        $user = Ohjaaja::authenticate($params['sposti'], $params['salasana']);
-        
+             
+        $user = Supervisor::authenticate($params['sposti'], $params['salasana']);     
         if (!$user) {
-            Redirect::to('/login', array('message' => 'Tarkasta kirjautumistietosi!', 'sposti' => $params['sposti']));
-            
+            Redirect::to('/login', array('message' => 'Tarkasta kirjautumistietosi!', 'sposti' => $params['sposti']));            
         } else {
             $_SESSION['user'] = $user->id;
             Redirect::to('/aiheet', array('message' => 'Tervetuloa takaisin, ' . $user->enimi . '!'));
@@ -46,10 +49,5 @@ class Ohjaajakontrolleri extends BaseController {
     public static function logout() {
         $_SESSION['user'] = null;
         Redirect::to('/login', array('message' => 'Olet kirjautunut ulos!'));
-    }
-
-    public static function ohjaajalista() {
-        $kaikki_ohjaajat = Ohjaaja::familynames();
-        echo json_encode($kaikki_ohjaajat);
     }
 }

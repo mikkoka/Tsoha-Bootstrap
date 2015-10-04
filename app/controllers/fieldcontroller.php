@@ -1,12 +1,12 @@
 <?php
 
-class Alakontrolleri extends BaseController {
+class FieldController extends BaseController {
     
     
-    public static function lisaa_aiheen_luokitus($id) {
+    public static function addField($id) {
         self::check_logged_in();
         $params = $_POST;
-        $uusi_ala = new AiheenLuokitus(array(
+        $uusi_ala = new FieldOfTopic(array(
             'aihe' => $id, 
             'ala' => $params['tutkimusala_id']            
         ));
@@ -17,9 +17,9 @@ class Alakontrolleri extends BaseController {
     } 
 
     
-        public static function poista_aiheen_luokitus($aihe, $ala) {
+        public static function removeField($aihe, $ala) {
         self::check_logged_in();    
-        $poistettava_ala = new AiheenLuokitus(array(
+        $poistettava_ala = new FieldOfTopic(array(
             'aihe' => $aihe, 
             'ala' => $ala            
         ));
@@ -28,8 +28,8 @@ class Alakontrolleri extends BaseController {
     }
     
         
-    public static function tutkimusalalista() {
-        $kaikki_alat = Tutkimusala::all();
+    public static function fields() {
+        $kaikki_alat = FieldofResearch::all();
         echo json_encode($kaikki_alat);
     }
 }
