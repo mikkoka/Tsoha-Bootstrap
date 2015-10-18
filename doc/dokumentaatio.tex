@@ -23,7 +23,7 @@
 \begin{document}
 \begin{titlepage}  
 \title{Graduaiheiden hallintajärjestelmä}
-\author{(tsoha)}
+\author{Mikko Kahri\\ (tsoha)}
 \date{\today}
 \maketitle    
 \tableofcontents
@@ -159,10 +159,10 @@ Yksi gradu voi liittyä useaan tutkimusalaan, ja tutkimusala useaan graduun.
 \section{Järjestelmän yleisrakenne}
 
 \begin{par}
-Tietokantasovellusta tehdessä on noudatettu MVC-mallia. Kontrollerit, näkymät ja mallit sijaitsevat hakemistoissa controllers, views- ja models. Käytetyt apukirjastot on sijoitettu hakemistoon lib ja asetukset löytyvät kansion config tiedostoista. Tietokannan taulujen luontiin käytetyt komennot löytyvät kansiosta sql. Järjestelmän hakutoiminnon toteutuksessa käytetty javastcript -koodi löytyy tiedostosta assets/js/site.js.
+Tietokantasovellusta tehdessä on noudatettu MVC-mallia. Kontrollerit, näkymät ja mallit sijaitsevat hakemistoissa \verb|controllers, views| ja \verb|models|. Käytetyt apukirjastot on sijoitettu hakemistoon \verb|lib| ja asetukset löytyvät kansion \verb|config| tiedostoista. (Ohjaajaksi rekisteröitymisessä vaadittava rekisteröintitunnus sekä Valitronin suomenkielisten palautetekstien polku on asetettu tiedostossa \verb|lib/base_controller.php.)| Tietokannan taulujen luontiin käytetyt komennot löytyvät kansiosta \verb|sql|. Järjestelmän hakutoiminnon toteutuksessa käytetty javastcript -koodi löytyy tiedostosta \verb|assets/js/site.js|.
 \end{par}\vspace{1em}
 \begin{par}
-Tiedostojen, luokkien ja funktioiden nimissä on käytetty englannin kieltä, muuttujien nimissä ja reiteissä suomen kieltä. Malliluokkien nimet ovat englanninkielisiä käännöksiä tietokannan suomenkielisten taulujen nimistä. Kontrolleriluokkien nimet ovat alkuosaltaan viittauksia näihin nimiin, loppuosan ollessa aina \textit{controller.} Tallentamiseen liittyvissä funktioitten nimissä on mahdollisuuksien mukaan käytetty sanaa \textit{save}, taulujen muuttamiseen liittyvien funktioiden nimissä sanaa \textit{update}, ja poistamiseen liittyvissä sanaa \textit{destroy}.  
+Tiedostojen, luokkien ja funktioiden nimissä on käytetty englannin kieltä, muuttujien nimissä ja reiteissä suomen kieltä. Malliluokkien nimet ovat englanninkielisiä käännöksiä tietokannan suomenkielisten taulujen nimistä. Kontrolleriluokkien nimet ovat alkuosaltaan viittauksia näihin nimiin, loppuosan ollessa aina \verb|controller|. Tallentamiseen liittyvissä funktioitten nimissä on mahdollisuuksien mukaan käytetty sanaa \verb|save|, taulujen muuttamiseen liittyvien funktioiden nimissä sanaa \verb|update|, ja poistamiseen liittyvissä sanaa \verb|destroy|.  
 \end{par}\vspace{1em}
 
 \section{Käyttöliittymä ja järjestelmän komponentit}
@@ -176,6 +176,13 @@ Sivustolla on navigaatiopalkki, jonka kautta jokainen käyttäjä pääsee mist�
 \end{par}
 
 \section{Asennustiedot}
+\begin{par}
+Asenna sovellus kopioimalla sen tiedostot palvelimen nettiin näkyvään hakemistoon (esim. usersin htdocs-hakemisto). Sinun täytyy myös asentaa \href{https://getcomposer.org/}{Composer} (voit halutessasi katsoa mallia tiedostosta \verb|bootstrap.sh|) sekä \href{https://github.com/vlucas/valitron}{Valitron}. Aseta myös tietokannan yhteystiedot oikeiksi tiedostossa \verb|config/database.php|.  Lisätietoja, ks. \href{http://tsoha.github.io/}{http://tsoha.github.io/}.
+\end{par}
+
+
+
+
 \section{Käynnistys- / käyttöohje}
 \begin{par}
 Harjoitustyö on asennettuna osoitteessa \href{http://mkahri.users.cs.helsinki.fi/tsoha/}{mkahri.users.cs.helsinki.fi/tsoha/}. Järjestelmään voi kirjautua koekäyttöä varten esim. seuraavilla (kuvitteellisilla) käyttäjätiedoilla:
@@ -192,8 +199,33 @@ Harjoitustyö on asennettuna osoitteessa \href{http://mkahri.users.cs.helsinki.f
 
 \vspace{2em}
 
-Järjestelmään voi siihen kirjauduttuaan (sen nykytilassa) lisätä, poistaa ja muokata aiheita sekä aiheisiin liittyviä ohjaaja- ja tutkimusalatietoja. Edistymistapahtumien lisäys- ja muokkaamistoimintojen toteutus on toistaiseksi kesken. Myös ohjaajan rekisteröitymistoiminnon toteutus on kesken.
+Jos haluaa lisätä järjestelmään uuden ohjaajan, tarvitsee rekisteröitymistunnuksen, joka on tätä kirjoitettaessa \textbf{virallinenohjaaja}. 
 
+\end{par}
+
+\section{Testaus ja puutteet}
+\subsection{Testaus}
+\begin{par}
+Järjestelmän testaus on tämän harjoitustyön osalta ollut enimmäkseen sitä, että olen aika-ajoin kiertänyt (kirjautuneena ja kirjautumattomana) painamassa kaikkien lomakkeitten kaikki nappulat erilaisilla lomakkeitten sisällöillä (ja ilman sisältöä) ja tarkkaillut, että toiminta on ollut johdonmukaista. En ole tietoinen, että esiintyisi häiriötiloihin joutumista tai muuta yllättävää käyttäytymistä.
+\end{par}
+
+\subsection{Bugit ja puutteet}
+\begin{par}
+Listaussivun hakutoiminnon soisi olevan epäsensitiivisen pienille/suurille alkukirjaimille, mutta näin ei kuitenkaan ole ("relaatiotietokannat"\ antaa eri hakutuloksen kuin "Relaatiotietokannat", esimerkiksi.) Olisi intuitiivista, ettei tapahtumatyyppiä "valmis" \ voisi lisätä kahdesti, mutta sen kuitenkin voi.
+\end{par}\vspace{1em}
+\begin{par}
+
+Graduaiheeseen liittyvien tapahtumien aikatiedoiksi tulee nykyisellään aina aika, jolloin tapahtuma on kirjattu järjestelmään. Toiminnallisuus, jolla voi kirjata tapahtumia jälkikäteen olisi ollut tarpeellinen. Samaten olisivat olleet tarpeellisia toiminnallisuudet, joilla lisätä uudenlaisia edistymistapahtumia ja uusia tutkimusaloja (nykyisellään niitä voi lisätä ainoastaan suorilla komennoilla tietokantaan). Edellisiin liittyen, myös ylläpitäjän käyttäjärooli olisi ollut hyvä luoda. Ohjaaja ei voi itse muokata omia tietojaan. 
+\end{par}
+
+\subsection{Jatkokehitysideat}
+\begin{par}
+Mietin, olisiko ollut parempi, jos sen sijaan, että gradun ohjaaja lisää aiheeseen siihen liittyviä edistymistapahtumia, gradun tekijä olisi saanut tilaisuuden liittää aiheeseensa joitakin sen tekoon liittyviä tietoja. Luulen, että oikeassa elämässä ohjaajat eivät ehdi/halua lisätä jokaisen ohjauspalaverin jälkeen graduaiheiden hallintajärjestelmään siihen liittyviä tietoja. Ideaalissa tapauksessa moiset tiedot tietenkin saisi työajan hallintajärjestelmistä ja toisaalta opintorekisteristä tms. Periaatteessa tämän tyyppiselle järjestelmälle voisi ihan oikeasti olla joillakin laitoksilla/ joissakin tiedekunnissa tarvetta.
+\end{par}
+
+\section{Omat kokemukset}
+\begin{par}
+Kokemus oli myönteinen. Tietokantakurssin asiat tulivat tietokannan rakentamisen ja käytön myötä konkreettisiksi. Kurssi ei ollut vaikea. Haasteet olivat sopivia. Jotkin asiat oli ehkä tehty jopa turhan helpoiksi. En osaisi tehdä uutta vastaavaa sovellusta ilman Tsoha-bootstrap -paketin tarjoamaa "huolenpitoa". Olisi ollut hauska, jos olisi kaiken muun lisäksi saanut kurssilta vielä moisen taidonkin mukaansa.
 \end{par}\vspace{1em}
 
 \end{document}

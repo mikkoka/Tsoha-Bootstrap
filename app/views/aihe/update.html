@@ -43,19 +43,23 @@
 </form>
 
 <h3>Tapahtumat</h3>
+{% for tapahtuma in tapahtumat %}
+<form method="post" action="{{base_path}}/aihe/{{aihe.id}}/tapahtuma/{{tapahtuma.tyyppi}}">
+    
     <ul>
-        {% for tapahtuma in tapahtumat %}
         <li>  
             {{ tapahtuma.nimi }}
             ({{ tapahtuma.aika |date('d.m.Y')}})
+            <input class="hidden" name="aika" value="{{tapahtuma.aika}}">
+            <input class="hidden" name="nimi" value="{{tapahtuma.nimi}}">
             <button type="submit" class="btn btn-xs btn-default">Tarkastele</button>
-
         </li>
-        {% endfor %}
     </ul>
+</form>
+{% endfor %}
 <form method="post" action="{{base_path}}/aihe/{{aihe.id}}/lisaa_tapahtumatyyppi">
     <div class="col-xs-5">
-        <select class="form-control form-group-sm" name="tapahtumatyyppi_id">
+        <select class="form-control form-group-sm" name="tyyppi">
             <option disabled selected>Valitse lisättävä tapahtumatyyppi</option>
             {% for tapahtuma in tapahtumatyyppi %} 
             <option value="{{tapahtuma.id}}">{{tapahtuma.nimi}}</option>

@@ -6,24 +6,24 @@ class FieldController extends BaseController {
     public static function addField($id) {
         self::check_logged_in();
         $params = $_POST;
-        $uusi_ala = new FieldOfTopic(array(
-            'aihe' => $id, 
-            'ala' => $params['tutkimusala_id']            
-        ));
-        
-        $uusi_ala->tallenna();
-        
-        Redirect::to('/aihe/' . $id . '/muokkaus');
-    } 
+        if (isset($params['tutkimusala_id'])) {
+            $uusi_ala = new FieldOfTopic(array(
+                'aihe' => $id,
+                'ala' => $params['tutkimusala_id']
+            ));
 
-    
-        public static function removeField($aihe, $ala) {
+            $uusi_ala->save();
+        }
+        Redirect::to('/aihe/' . $id . '/muokkaus');
+    }
+
+    public static function removeField($aihe, $ala) {
         self::check_logged_in();    
         $poistettava_ala = new FieldOfTopic(array(
             'aihe' => $aihe, 
             'ala' => $ala            
         ));
-        $poistettava_ala->poista();
+        $poistettava_ala->destroy();
         Redirect::to('/aihe/' . $aihe . '/muokkaus');
     }
     

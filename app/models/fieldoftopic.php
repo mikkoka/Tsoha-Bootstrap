@@ -6,7 +6,7 @@ class FieldOfTopic extends BaseModel {
         parent::__construct($attributes);
     }
     
-    public function tallenna() {
+    public function save() {
 
         try {
             $query = DB::connection()->prepare('INSERT INTO Aiheen_luokitus (aihe, ala) VALUES (:aihe, :ala)');
@@ -16,7 +16,7 @@ class FieldOfTopic extends BaseModel {
         }
     }
     
-    public function poista() {
+    public function destroy() {
 
         try {
             $query = DB::connection()->prepare('DELETE FROM Aiheen_luokitus WHERE aihe= :aihe AND ala= :ala');

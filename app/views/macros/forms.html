@@ -24,3 +24,13 @@
             <a href="{{href}}" class="btn btn-primary">Muokkaa aihetta</a></h1>
 </div>
 {% endmacro %}
+
+{% macro tarkastelu_nappi_listat(action, text) %}
+<li>
+<div style="display: inline-block;">{{text|default('Lisää teksti!')}}
+    <form method="post" action="{{action}}" style="display: inline-block;">
+        <button type="submit" class="btn btn-xs btn-default">Tarkastele</button>
+    </form>
+</div>
+</li>
+{% endmacro %}

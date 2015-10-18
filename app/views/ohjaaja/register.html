@@ -1,26 +1,57 @@
 {% extends "base.html" %}
 {% block content %}
+  {% if errors %}
+    <div class="alert alert-danger">
+
+      <ul>
+          {% for error in errors %}
+          <li>{{error.0}}</li>  
+          {% endfor %}
+      </ul>
+
+    </div>
+  {% else %}
+  
+
 <div class="alert alert-danger">
     Rekisteröitymistoiminto on tarkoitettu ainoastaan rekisteröityjä ohjaajia varten. Tarvitset rekisteröityäksesi rekisteröitymistunnuksen.
 </div>
+     {% endif %}
   <h1>Rekisteröidy ohjaajaksi</h1>
 
-  <form method="post" action="{{base_path}}/login">
+
+  <form method="post" action="{{base_path}}/register">
+          
     <div class="form-group">
-      <label>Sähköpostiosoite</label>
-      <input type="text" class="form-control" name="sposti" value="{{sposti}}">
+      <label>Etunimi (enimi)</label>
+      <input type="text" class="form-control" name="enimi" value="{{attributes.enimi}}">
     </div>
+      
+    <div class="form-group">
+      <label>Sukunimi (snimi)</label>
+      <input type="text" class="form-control" name="snimi" value="{{attributes.snimi}}">
+    </div>
+      
+    <div class="form-group">
+      <label>Sähköpostiosoite (sposti)</label>
+      <input type="text" class="form-control" name="sposti" value="{{attributes.sposti}}">
+    </div>
+      
+    <div class="form-group">
+      <label>Rekisteröitymistunnus (rtunnus)</label>
+      <input type="password" class="form-control" name="rtunnus">
+    </div>  
 
     <div class="form-group">
       <label>Salasana</label>
       <input type="password" class="form-control" name="salasana">
-    </div>
-      
-    <div class="form-group">
-      <label>Rekisteröitymistunnus</label>
-      <input type="password" class="form-control" name="tunnus">
-    </div>
+    </div>      
 
-    <button type="submit" class="btn btn-primary">Kirjaudu sisään</button>
+
+    <button type="submit" class="btn btn-primary">Rekisteröidy</button>
   </form>
+  
+  <p></p>
+ 
+  <a class="btn btn-primary" href="{{base_path}}/aiheet">Paluu</a>
 {% endblock %}

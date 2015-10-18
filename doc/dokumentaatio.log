@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.28)  4 OCT 2015 22:28
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.12.28)  18 OCT 2015 23:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -657,7 +657,7 @@ Package babel Info: Redefining finnish shorthand "|
 Package babel Info: Redefining finnish shorthand "|
 (babel)             in language  on input line 48.
 
-<useCase1.png, id=85, 582.175pt x 423.5825pt>
+<useCase1.png, id=110, 582.175pt x 423.5825pt>
 File: useCase1.png Graphic file (type png)
  <use useCase1.png>
 Package pdftex.def Info: useCase1.png used on input line 51.
@@ -688,7 +688,7 @@ Package babel Info: Redefining finnish shorthand "|
 (babel)             in language  on input line 87.
 Package babel Info: Redefining finnish shorthand "|
 (babel)             in language  on input line 88.
- <infoContent1.png, id=92, 381.425pt x 374.39874pt>
+ <infoContent1.png, id=117, 381.425pt x 374.39874pt>
 File: infoContent1.png Graphic file (type png)
 
 <use infoContent1.png>
@@ -757,7 +757,7 @@ Package babel Info: Redefining finnish shorthand "|
 [4]
 Package babel Info: Redefining finnish shorthand "|
 (babel)             in language  on input line 155.
- <classDiagram1.png, id=108, 743.77875pt x 418.56375pt>
+ <classDiagram1.png, id=133, 743.77875pt x 418.56375pt>
 File: classDiagram1.png Graphic file (type png)
 
 <use classDiagram1.png>
@@ -770,9 +770,15 @@ Overfull \hbox (136.00417pt too wide) in paragraph at lines 157--158
 
 Package babel Info: Redefining finnish shorthand "|
 (babel)             in language  on input line 159.
+LaTeX Font Info:    Try loading font information for T1+cmtt on input line 162.
+
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
 Package babel Info: Redefining finnish shorthand "|
 (babel)             in language  on input line 168.
-<komponentit1.png, id=109, 555.07375pt x 429.605pt>
+
+<komponentit1.png, id=134, 555.07375pt x 429.605pt>
 File: komponentit1.png Graphic file (type png)
  <use komponentit1.png>
 Package pdftex.def Info: komponentit1.png used on input line 170.
@@ -785,46 +791,79 @@ Package babel Info: Redefining finnish shorthand "|
 [5 <./classDiagram1.png>]
 Package babel Info: Redefining finnish shorthand "|
 (babel)             in language  on input line 178.
+
+Underfull \hbox (badness 2050) in paragraph at lines 180--182
+\T1/cmr/m/n/10.95 Asenna so-vel-lus ko-pioi-mal-la sen tie-dos-tot pal-ve-li-me
+n net-tiin nä-ky-vään
+ []
+
+
+Underfull \hbox (badness 1097) in paragraph at lines 180--182
+\T1/cmr/m/n/10.95 ha-ke-mis-toon (esim. user-sin htdocs-hakemisto). Si-nun täy-
+tyy myös asen-
+ []
+
+
+Underfull \hbox (badness 1490) in paragraph at lines 180--182
+\T1/cmr/m/n/10.95 se-kä [][]Va-lit-ron[][]. Ase-ta myös tie-to-kan-nan yh-teys-
+tie-dot oi-keik-si tie-dos-tos-sa
+ []
+
 Package babel Info: Redefining finnish shorthand "|
-(babel)             in language  on input line 179.
+(babel)             in language  on input line 186.
 Package babel Info: Redefining finnish shorthand "|
-(babel)             in language  on input line 196.
+(babel)             in language  on input line 201.
 Package babel Info: Redefining finnish shorthand "|
-(babel)             in language  on input line 196.
- [6 <./komponentit1.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 199.
+(babel)             in language  on input line 201.
+[6 <./komponentit1.png>]
 Package babel Info: Redefining finnish shorthand "|
-(babel)             in language  on input line 199.
+(babel)             in language  on input line 206.
 Package babel Info: Redefining finnish shorthand "|
-(babel)             in language  on input line 199.
+(babel)             in language  on input line 207.
+Package babel Info: Redefining finnish shorthand "|
+(babel)             in language  on input line 212.
+Package babel Info: Redefining finnish shorthand "|
+(babel)             in language  on input line 221.
+Package babel Info: Redefining finnish shorthand "|
+(babel)             in language  on input line 226.
+Package babel Info: Redefining finnish shorthand "|
+(babel)             in language  on input line 230.
+Package babel Info: Redefining finnish shorthand "|
+(babel)             in language  on input line 230.
  [7]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 199.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 231.
+Package babel Info: Redefining finnish shorthand "|
+(babel)             in language  on input line 231.
+Package babel Info: Redefining finnish shorthand "|
+(babel)             in language  on input line 231.
+ [8]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 231.
  (./dokumentaatio.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 199.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 199.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 231.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 231.
 Package rerunfilecheck Info: File `dokumentaatio.out' has not changed.
-(rerunfilecheck)             Checksum: F52B060B21379832F3FE386EC8F05EC9;990.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 199.
+(rerunfilecheck)             Checksum: D9B694FF7526D06A7C5F755D3477E535;1288.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 231.
  ) 
 Here is how much of TeX's memory you used:
- 8076 strings out of 493304
- 119427 string characters out of 6139870
+ 8116 strings out of 493304
+ 120313 string characters out of 6139870
  224743 words of memory out of 5000000
- 11396 multiletter control sequences out of 15000+600000
- 14147 words of font info for 35 fonts, out of 8000000 for 9000
+ 11427 multiletter control sequences out of 15000+600000
+ 13772 words of font info for 35 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 44i,9n,42p,625b,400s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,9n,42p,803b,400s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/texmf/
 fonts/type1/public/cm-super/sfbx1095.pfb></usr/share/texmf/fonts/type1/public/c
 m-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx1440.pfb
 ></usr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb></usr/share/texmf/f
 onts/type1/public/cm-super/sfrm1095.pfb></usr/share/texmf/fonts/type1/public/cm
 -super/sfrm1200.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1728.pfb>
-</usr/share/texmf/fonts/type1/public/cm-super/sfti1095.pfb>
-Output written on dokumentaatio.pdf (8 pages, 208202 bytes).
+</usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on dokumentaatio.pdf (9 pages, 225998 bytes).
 PDF statistics:
- 163 PDF objects out of 1000 (max. 8388607)
- 135 compressed objects within 2 object streams
- 24 named destinations out of 1000 (max. 500000)
- 133 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 196 PDF objects out of 1000 (max. 8388607)
+ 167 compressed objects within 2 object streams
+ 30 named destinations out of 1000 (max. 500000)
+ 173 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -76,7 +76,7 @@ class Supervisor extends BaseModel {
         return $ohjaaja;
     }
     
-        public static function findLuoja($aihe) {
+        public static function findCreator($aihe) {
         $query = DB::connection()
                 ->prepare('SELECT enimi, snimi, Ohjaaja.id FROM Ohjaaja, Aihe WHERE Aihe.id = :aihe AND Ohjaaja.id=Aihe.luoja LIMIT 1');
         $query->execute(array('aihe'=>$aihe));
@@ -93,7 +93,7 @@ class Supervisor extends BaseModel {
     }
     
     
-        public static function findNimi($snimi) {
+        public static function findName($snimi) {
         $query = DB::connection()->prepare('SELECT * FROM Ohjaaja WHERE snimi = :snimi LIMIT 1');
         $query->execute(array('snimi'=>$snimi));
         $row = $query->fetch();
@@ -128,6 +128,13 @@ class Supervisor extends BaseModel {
         }
         
         return $ohajaajat;
+    }
+    
+        public function create() {
+        $query = DB::connection()->prepare('INSERT INTO Ohjaaja (snimi, enimi, sposti, salasana) VALUES (:snimi, :enimi, :sposti, :salasana)');
+        $query->execute(array('snimi' => $this->snimi, 'enimi' => $this->enimi, 'sposti' => $this->sposti, 'salasana' => $this->salasana));
+        $row = $query->fetch();
+
     }
 
 }

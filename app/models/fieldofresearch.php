@@ -22,7 +22,7 @@ class FieldofResearch extends BaseModel {
         return $tutkimusalat;
     }
     
-    public static function gradunAlat($aihe) {
+    public static function findFieldsOfTopic($aihe) {
         $query = DB::connection()->prepare('SELECT * from Tutkimusala, Aiheen_luokitus WHERE Aiheen_luokitus.aihe = :aihe AND Aiheen_luokitus.ala = Tutkimusala.id');
         $query->execute(array('aihe' => $aihe));
         $rows = $query->fetchAll();

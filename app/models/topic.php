@@ -29,7 +29,7 @@ class Topic extends BaseModel{
         return $aiheet;
     }
     
-        public static function ohjaajanAiheet($ohjaaja) {
+        public static function findTopicsOfSupervisor($ohjaaja) {
         $query = DB::connection()->prepare('SELECT Aihe.id AS id, otsikko, luotu FROM Aihe, Aiheen_ohjaaja, Ohjaaja WHERE Ohjaaja.snimi = :snimi AND Aiheen_ohjaaja.aihe = Aihe.id AND Aiheen_ohjaaja.ohjaaja = Ohjaaja.id ORDER BY luotu DESC');
         $query->execute(array('snimi' => $ohjaaja));
         $rows = $query->fetchAll();
@@ -46,7 +46,7 @@ class Topic extends BaseModel{
         return $aiheet;
     }
     
-        public static function alanAiheet($ala) {
+        public static function findTopicsOfField($ala) {
         $query = DB::connection()->prepare('SELECT Aihe.id AS id, otsikko, luotu FROM Aihe, Aiheen_luokitus, Tutkimusala WHERE Tutkimusala.nimi = :nimi AND Aiheen_luokitus.aihe = Aihe.id AND Aiheen_luokitus.ala = Tutkimusala.id ORDER BY luotu DESC');
         $query->execute(array('nimi' => $ala));
         $rows = $query->fetchAll();
@@ -63,7 +63,7 @@ class Topic extends BaseModel{
         return $aiheet;
     }
     
-        public static function ohjaajanAiheetAlalla($ohjaaja, $ala) {
+        public static function findTopicsOfSupervisorAtField($ohjaaja, $ala) {
         
         $query = DB::connection()->prepare('SELECT Aihe.id AS id, otsikko, luotu FROM Aihe, Aiheen_ohjaaja, Ohjaaja, Aiheen_luokitus, Tutkimusala WHERE Ohjaaja.snimi = :snimi AND Aiheen_ohjaaja.aihe = Aihe.id AND Aiheen_ohjaaja.ohjaaja = Ohjaaja.id AND Tutkimusala.nimi = :nimi AND Aiheen_luokitus.aihe = Aihe.id AND Aiheen_luokitus.ala = Tutkimusala.id ORDER BY luotu DESC');
         $query->execute(
@@ -106,19 +106,19 @@ class Topic extends BaseModel{
         return null;
     }
     
-    public function tallenna() {
+    public function save() {
         $query = DB::connection()->prepare('INSERT INTO Aihe (otsikko, kuvaus, tekija_nimi, opnro, luoja, luotu) VALUES (:otsikko, :kuvaus, :tekija_nimi, :opnro, :luoja, NOW()) RETURNING id');
         $query->execute(array('otsikko' => $this->otsikko, 'kuvaus' => $this->kuvaus, 'tekija_nimi' => $this->tekija_nimi, 'opnro' => $this->opnro, 'luoja' => $this->luoja));
         $row = $query->fetch();
         $this->id = $row['id'];
     }
     
-        public function paivita() {
+        public function update() {
         $query = DB::connection()->prepare('UPDATE Aihe SET otsikko= :otsikko, kuvaus= :kuvaus, tekija_nimi= :tekija_nimi, opnro= :opnro WHERE id= :id');
         $query->execute(array('otsikko' => $this->otsikko, 'kuvaus' => $this->kuvaus, 'tekija_nimi' => $this->tekija_nimi, 'opnro' => $this->opnro, 'id' => $this->id));
     }
     
-    public function poista() {
+    public function destroy() {
         $query1 = DB::connection()->prepare('DELETE FROM Aiheen_luokitus WHERE aihe= :id');
         $query1->execute(array('id' => $this->id)); 
         $query2 = DB::connection()->prepare('DELETE FROM Aiheen_ohjaaja WHERE aihe= :id');

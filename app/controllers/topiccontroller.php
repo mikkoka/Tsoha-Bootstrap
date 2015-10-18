@@ -14,7 +14,7 @@ class TopicController extends BaseController {
             array("opnro", 7, 9))
         );
     
-    public static $language = '/home/mkahri/htdocs/tsoha/vendor/vlucas/valitron/lang';
+
     
     // UPDATING
     
@@ -22,8 +22,8 @@ class TopicController extends BaseController {
         self::check_logged_in();
         $aihe = Topic::find($id);
         $ohjaajat = Supervisor::findOhjaajat($id);
-        $luoja = Supervisor::findLuoja($id);
-        $alat = FieldofResearch::gradunAlat($id);
+        $luoja = Supervisor::findCreator($id);
+        $alat = FieldofResearch::findFieldsOfTopic($id);
         $tapahtumat = EventOfTopic::findAll($id);
         $tapahtumatyyppi = EventType::all();
         $kaikki_ohjaajat = Supervisor::all();
@@ -68,7 +68,7 @@ class TopicController extends BaseController {
         if ($validoija->validate()) {
                
             $aihe = new Topic($attribuutit);            
-            $aihe->paivita();
+            $aihe->update();
             Redirect::to('/aihe/' . $id);
             
         } else {    
@@ -95,7 +95,7 @@ class TopicController extends BaseController {
         if ($validoija->validate()) {
                
             $aihe = new Topic($attribuutit);            
-            $aihe->tallenna();
+            $aihe->save();
             Redirect::to('/aihe/' . $aihe->id . '/muokkaus');
             
         } else {    
@@ -106,7 +106,7 @@ class TopicController extends BaseController {
     public static function destroy($id) {
         self::check_logged_in();
         $aihe = new Topic(array('id' => $id));
-        $aihe->poista();
+        $aihe->destroy();
         Redirect::to('/aiheet', array('message' => 'Aihe poistettu onnistuneesti!'));
     }
     
@@ -126,16 +126,16 @@ class TopicController extends BaseController {
     public static function search() {
         $params = $_GET;        
         if (empty($params['tutkimusala']) && !empty($params['snimi'])) {
-            $aiheet = Topic::ohjaajanAiheet($params['snimi']);
+            $aiheet = Topic::findTopicsOfSupervisor($params['snimi']);
             $message =  "Hakusana '" . $params['snimi'] . "' tuotti seuraavat tulokset:";
         } else if (empty($params['snimi']) && !empty($params['tutkimusala'])) {
-            $aiheet = Topic::alanAiheet($params['tutkimusala']);
+            $aiheet = Topic::findTopicsOfField($params['tutkimusala']);
             $message = "Hakusana '" . $params['tutkimusala'] . "' tuotti seuraavat tulokset:"; 
         } else if (empty($params['snimi']) && empty($params['tutkimusala'])) {
            header('Location: ' . BASE_PATH . '/aiheet');
            exit;
         } else {
-            $aiheet = Topic::ohjaajanAiheetAlalla($params['snimi'], $params['tutkimusala']);
+            $aiheet = Topic::findTopicsOfSupervisorAtField($params['snimi'], $params['tutkimusala']);
             $message = "Hakusanat '". $params['snimi'] . "' ja '" . $params['tutkimusala'] . "' tuottivat seuraavat tulokset:"; 
         }
         View::make('aihe/index.html', array('aiheet' => $aiheet, 'haku' => $message));
@@ -144,8 +144,8 @@ class TopicController extends BaseController {
     public static function show($id) {
         $aihe = Topic::find($id);
         $ohjaajat = Supervisor::findOhjaajat($id);
-        $luoja = Supervisor::findLuoja($id);
-        $alat = FieldofResearch::gradunAlat($id);
+        $luoja = Supervisor::findCreator($id);
+        $alat = FieldofResearch::findFieldsOfTopic($id);
         $tapahtuma = EventOfTopic::findLatest($id);  
         $valmis = EventOfTopic::ready($id);
         

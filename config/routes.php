@@ -1,5 +1,7 @@
 <?php
 
+
+
 // HELLOCONTROLLER (GENERAL)
 
 $routes->get('/', function() {
@@ -62,15 +64,18 @@ $routes->post('/aihe/:id/poista', function($id) {
     TopicController::destroy($id);
 });
 
-$routes->post('/aihe/:id/lisaa_tapahtumatyyppi', function($id) {
-    TopicController::lisaa_tapahtumatyyppi($id);
-});
-
-
-// SUPERVISORCONTROLLER (SUPERVISOR OF MASTERS' THESIS
+// SUPERVISORCONTROLLER (SUPERVISOR OF MASTERS' THESIS)
 
 $routes->get('/ohjaajat', function() {
     SupervisorController::supervisors();
+});
+
+$routes->get('/register', function() {
+    SupervisorController::register();
+});
+
+$routes->post('/register', function() {
+    SupervisorController::create();
 });
 
 $routes->post('/aihe/:id/lisaa_ohjaaja', function($id) {
@@ -93,4 +98,28 @@ $routes->post('/logout', function() {
     SupervisorController::logout();
 });
 
+// EVENTCONTROLLER (ADDING PROGRESS EVENTS TO A TOPIC OF MASTERS' THESIS)
 
+$routes->post('/aihe/:aihe/tapahtuma/:tyyppi/aika/:aika', function($aihe, $tyyppi, $aika) {
+    EventController::saveComment($aihe, $tyyppi, $aika);
+});
+
+$routes->post('/aihe/:aihe/tapahtuma/:tyyppi/aika/:aika/poista', function($aihe, $tyyppi, $aika) {
+    EventController::destroyComment($aihe, $tyyppi, $aika);
+});
+
+$routes->post('/aihe/:id/lisaa_tapahtuma', function($id) {
+    EventController::addEvent($id);
+});
+
+$routes->post('/aihe/:aihe/poista_tapahtuma/:tapahtuma', function($aihe, $tapahtuma) {
+    EventController::removeEvent($aihe, $tapahtuma);
+});
+
+$routes->post('/aihe/:id/tapahtuma/:tyyppi', function($id, $tyyppi) {
+    EventController::editComment($id, $tyyppi);
+});
+
+$routes->post('/aihe/:id/lisaa_tapahtumatyyppi', function($id) {
+    EventController::create($id);
+});
